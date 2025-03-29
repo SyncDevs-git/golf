@@ -8,7 +8,7 @@ import Animals from './Animals.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/animals', component: Animals },
+        { path: '/', component: Animals },
     ]
 });
 
