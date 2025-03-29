@@ -1,0 +1,1 @@
+<template>animals page</template>
