@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "GolfWelcomePage"
+  name: "App"
 };
 </script>
 
