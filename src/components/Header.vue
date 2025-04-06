@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="bg-[#0D1B1E] text-white flex items-center justify-between px-6 py-3 shadow-md"
+    class="bg-[#08201C] text-white flex items-center justify-between pl-10 pr-[25px] py-[35px] shadow-md"
   >
     <div class="flex items-center space-x-4">
-      <div class="logo">
+      <div class="logo pr-[26px]">
         <img src="../assets/images/logo.png" alt="" srcset="" />
       </div>
       <nav class="flex space-x-4 text-sm">
@@ -11,56 +11,14 @@
           <li v-for="item in navItems" :key="item.to">
             <a
               :href="item.to"
-              class="flex items-center space-x-1  font-semibold"
-              :class="isActive(item.to) ? 'bg-secondary text-primary font-bold' : 'text-textSecondary hover:text-textPrimary'"
+              class="flex items-center gap-x-[7px] font-styrene-medium "
+              :class="isActive(item.to) ? 'text-primary' : 'text-secondary hover:text-primary'"
             >
             <span v-html="item.icon" :class="isActive(item.to) ? 'fill-primary text-orange-500' : 'fill-current text-gray-500'"></span>
               <span>{{ item.title }}</span>
             </a>
           </li>
         </ul>
-        <!-- <a
-          href="#"
-          class="flex items-center space-x-1 text-yellow-500 font-semibold"
-        >
-          <span>📌</span>
-          <span>Dashboard</span>
-        </a>
-        <a
-          href="#"
-          class="flex items-center space-x-1 opacity-60 hover:opacity-100"
-        >
-          <span>📄</span>
-          <span>Your GOLF AI Trainer</span>
-        </a>
-        <a
-          href="#"
-          class="flex items-center space-x-1 opacity-60 hover:opacity-100"
-        >
-          <span>🎥</span>
-          <span>Video Library</span>
-        </a>
-        <a
-          href="#"
-          class="flex items-center space-x-1 opacity-60 hover:opacity-100"
-        >
-          <span>🏌️</span>
-          <span>Training Aids</span>
-        </a>
-        <a
-          href="#"
-          class="flex items-center space-x-1 opacity-60 hover:opacity-100"
-        >
-          <span>🛤️</span>
-          <span>Journey</span>
-        </a>
-        <a
-          href="#"
-          class="flex items-center space-x-1 opacity-60 hover:opacity-100"
-        >
-          <span>📖</span>
-          <span>Book Top 100</span>
-        </a> -->
       </nav>
     </div>
 
@@ -100,6 +58,10 @@ export default defineComponent({
 </svg>`, title: "Dashboard", to: "/" },
       { icon: "📄", title: "Your GOLF AI Trainer", to: "/trainer" },
       { icon: "🎥", title: "Video Library", to: "/videos" },
+      { icon: "🎥", title: "Training Aids", to: "/videos" },
+      { icon: "🎥", title: "Video Library", to: "/videos" },
+      { icon: "🎥", title: "Journey", to: "/videos" },
+      { icon: "🎥", title: "Book Top 100", to: "/videos" },
     ];
 
     const isActive = (path: string) => route.path === path;
