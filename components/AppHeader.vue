@@ -60,7 +60,7 @@ export default defineComponent({
 </script>
 <template>
     <nav
-      class="bg-deepForest flex items-center justify-between pl-10 pr-[25px] border-t-[8px] border-teritory"
+      class="bg-deepForest flex items-center justify-between pl-10 pr-[25px] border-t-[8px] border-teritory mb-[30px]"
     >
       <div class="flex items-center gap-x-4">
         <div class="logo pr-[26px]">

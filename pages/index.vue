@@ -45,12 +45,13 @@ const pieHeaders = [
   <div class="container">
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-3">
-        <div class="rounded-lg p-5 shadow-md bg-white">
+        <div class="rounded-[20px] p-5 shadow-md bg-white">
           <div class="flex flex-col items-center gap-3">
-            <img src="/assets/images/profile.png" alt="Avatar" class="w-12 h-12 rounded-full" />
+            <img src="/assets/images/profile-2.png" alt="Avatar" class="w-[112px] h-[112px] rounded-full" />
             <h2 class="text-lg font-semibold text-black">Hello, Smith William</h2>
             <div class="flex flex-col gap-2 w-full text-center">
               <div class="flex flex-col gap-1">
+                <p class="font-playfair font-bold text-base text-gray-light">Hello, <span class="text-white">Smith</span></p>
                 <span :style="{ color: strokesGainedColor }" class="text-base font-semibold">
                   {{ formatValue(strokesGained) }}
                 </span>
@@ -71,10 +72,10 @@ const pieHeaders = [
       </div>
       <div class="col-span-9">
         <!-- Header: Tabs -->
-        <div class="flex gap-2 bg-white rounded-lg p-2 shadow-md">
+        <div class="flex gap-2 bg-white rounded-[15px] p-[15px] shadow-md">
           <button v-for="tab in tabs" :key="tab" :class="[
-            'px-4 py-2 text-sm text-gray-500 rounded',
-            activeTab === tab ? 'bg-yellowOrange text-white' : 'hover:bg-gray-100'
+            'px-[15px] py-[9px] font-styrene-bold font-bold text-[15px] leading-[120%] hover:bg-[#FFA30033] hover:text-[#FFA300] rounded-[10px]',
+            activeTab === tab ? 'bg-[#FFA30033] text-[#FFA300]' : 'text-black/25'
           ]" @click="activeTab = tab">
             {{ tab }}
           </button>
