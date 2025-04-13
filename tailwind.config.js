@@ -12,7 +12,9 @@ module.exports = {
 
   theme: {
     fontFamily: {
+      "styrene-regular": ["Styrene-A-Web-regular", "sans-serif"],
       "styrene-medium": ["Styrene-A-Web", "sans-serif"],
+      "styrene-bold": ["Styrene-A-Web-bold", "sans-serif"],
       playfair: ["Playfair", "serif"],
     },
     extend: {
@@ -23,6 +25,23 @@ module.exports = {
         brandGreen: "#189740",
         "gray-light": "#AAAAAA",
         deepForest: "#0A2B26",
+        sonfSliver: "#E7EAEA",
+      },
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '16px',
+        sm: '16px',
+        lg: '16px',
+        '2xl': '16px',
+      },
+      screens: {
+        sm: '600px',
+        md: '728px',
+        lg: '996px',
+        xl: '1170px',
+        '2xl': '1400px',
       },
     },
   },
