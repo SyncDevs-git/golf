@@ -1,0 +1,79 @@
+/* font-family */
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+/* tailwind commmon css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* local font-family */
+@layer base {
+  @font-face {
+    font-family: 'Styrene-A-Web-regular';
+    font-weight: 400;
+    font-style: normal;
+    src: url(/assets/fonts/styrene/StyreneAWeb-Regular.woff2) format('woff2');
+  }  
+  @font-face {
+    font-family: 'Styrene-A-Web';
+    font-weight: 500;
+    font-style: normal;
+    src: url(/assets/fonts/styrene/StyreneAWeb-Medium.woff2) format('woff2');
+  }  
+  @font-face {
+    font-family: 'Styrene-A-Web-bold';
+    font-weight: bold;
+    font-style: normal;
+    src: url(/assets/fonts/styrene/StyreneAWeb-Bold.woff2) format('woff2');
+  }
+}
+
+nav .nav-active svg path{
+  @apply fill-primary;
+  fill-opacity: 1; 
+}
+nav li a:hover svg path{
+  @apply fill-primary; 
+  fill-opacity: 1; 
+}
+
+.pie-graph-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-basis: 69%;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 49%;
+}
+
+.legend-color {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.legend-label {
+ @apply font-styrene-medium font-medium text-sm leading-[125%];
+}
+
+.legend-value {
+  @apply w-min border border-[#ddd] rounded-[5px] py-1 px-2 relative bg-white after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-[4px] after:bg-[#ddd] after:w-[7px] after:h-[7px] after:rotate-45 after:-z-10;
+}
+
+.chart {
+  width: 200px;
+  height: 200px;
+  flex-basis: 29%;
+}
