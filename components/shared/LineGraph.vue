@@ -1,9 +1,9 @@
 <template>
-  <div class="rounded-[20px] mx-10">
-    <div class="p-[25px]">
+  <div class="rounded-[20px]">
+    <div class="">
       <!-- Chart -->
       <div
-        class="linePie flex items-center justify-between border rounded-[20px] border-black/10 px-5 pt-[22px] pb-[7px]">
+        class="linePie flex items-center justify-between border rounded-[20px] border-black/10 px-5 pt-[22px] pb-[7px] mb-[30px]">
         <span>
           <img src="/assets/images/golf.svg" alt="">
         </span>
@@ -12,11 +12,11 @@
           <img src="/assets/images/golf-flag.svg" alt="">
         </span>
       </div>
-      <div class="flex items-center justify-center divide-x divide-slate-200">
-        <CircleGraph title="Driving" :value="+0.2" :maxValue="100" units="SG" mode="positive" />
-        <CircleGraph title="Approach" :value="0.2" :maxValue="100" units="SG" mode="positive" />
-        <CircleGraph title="Short" :value="-0.2" :maxValue="100" units="SG" mode="negative" />
-        <CircleGraph title="Putting" :value="0.2" :maxValue="100" units="SG" mode="negative" />
+      <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
+        <CircleGraph class="col-span-3" title="Driving" :value="+0.2" :maxValue="100" units="SG" mode="positive" />
+        <CircleGraph class="col-span-3" title="Approach" :value="0.2" :maxValue="100" units="SG" mode="positive" />
+        <CircleGraph class="col-span-3" title="Short" :value="-0.2" :maxValue="100" units="SG" mode="negative" />
+        <CircleGraph class="col-span-3" title="Putting" :value="0.2" :maxValue="100" units="SG" mode="negative" />
       </div>
     </div>
 
