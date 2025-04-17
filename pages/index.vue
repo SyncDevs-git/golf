@@ -203,11 +203,17 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
             </template>
           </ContentCard>
           <ContentCard
-            title="Your Stokes Gained (SG) Breakdown Chart"
+            title="Scoring Averages"
             tooltip="SG is a way to measure performance"
           >
             <template #body>
-              <PieGraph :data="pieData" :Headers="pieHeaders" />
+              <SliderGraph
+  title="CPU Usage"
+  :value="4.8"
+  :maxValue="10"
+  mode="success"
+/>
+
             </template>
             <template #footer>
               <div
@@ -217,7 +223,7 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
                   <p
                     class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black"
                   >
-                    Meriwether National GC - West 11/06/2024 Score: 45 @ 15 HCP
+                    You are <span class="text-red-600">losing 0.5 stokes</span> on par 3s, But yout are <span class="text-green-600">gaining 0.1 Stokes</span> on par 4s
                   </p>
                 </div>
               </div>
