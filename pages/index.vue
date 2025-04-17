@@ -48,25 +48,29 @@ const pieHeaders = [
         <div class="rounded-[20px] p-5 shadow-md bg-white">
           <div class="flex flex-col items-center gap-3">
             <img src="/assets/images/profile-2.png" alt="Avatar" class="w-[112px] h-[112px] rounded-full" />
-            <h2 class="text-lg font-semibold text-black">Hello, Smith William</h2>
+            <h2  class="font-playfair font-bold text-base text-gray-light mb-[30px]">Hello, <span class="text-black">Smith</span></h2>
             <div class="flex flex-col gap-2 w-full text-center">
-              <div class="flex flex-col gap-1">
-                <p class="font-playfair font-bold text-base text-gray-light">Hello, <span class="text-white">Smith</span></p>
-                <span :style="{ color: strokesGainedColor }" class="text-base font-semibold">
-                  {{ formatValue(strokesGained) }}
-                </span>
-                <span class="text-xs text-gray-500">Your Stokes Gained (SG) Breakdown</span>
-              </div>
-              <div class="flex flex-col gap-1">
-                <span class="text-base font-semibold text-black">{{ handicap }}</span>
+              <div class="flex items-center justify-between gap-1 py-[15px] border-t border-dashed border-gray-light">
                 <span class="text-xs text-gray-500">Handicap</span>
+                <span class="text-base font-semibold text-black">{{ handicap }}</span>
               </div>
-              <div class="flex flex-col gap-1">
-                <span class="text-base font-semibold text-black">{{ rounds }}</span>
+              <div class="flex items-center justify-between gap-1 py-[15px] border-t border-dashed border-gray-light">
                 <span class="text-xs text-gray-500">Rounds</span>
+                <span class="text-base font-semibold text-black">{{ rounds }}</span>
+              </div>
+              <div class="flex items-center justify-between gap-1 py-[15px] border-t border-dashed border-gray-light">
+                <span class="text-xs text-gray-500">Rounds</span>
+                <span class="text-base font-semibold text-black">{{ rounds }}</span>
               </div>
             </div>
-            <a href="#" class="text-sm text-blue-500 hover:underline mt-3">Show Handicap Breakdown →</a>
+            <div class="border rounded-[20px] w-full">
+              <div class="flex">
+                <p>-2.0</p>
+                <p>2.0-
+                  <span class="block"></span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
