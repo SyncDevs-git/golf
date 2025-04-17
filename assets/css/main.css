@@ -77,3 +77,73 @@ nav li a:hover svg path{
   height: 200px;
   flex-basis: 29%;
 }
+
+.sg-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 300px;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-value {
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+.delta-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.delta {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.delta.positive .arrow {
+  transform: rotate(180deg);
+}
+
+.label {
+  color: #999;
+  font-size: 14px;
+}
+
+.description {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer {
+  margin-top: 16px;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  cursor: pointer;
+}
+
+.arrow {
+  font-weight: bold;
+  margin-left: 4px;
+}
