@@ -58,7 +58,7 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
   <div class="container">
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-3">
-        <div class="rounded-[20px] p-5 shadow-md bg-white">
+        <div class="rounded-[20px] p-5 shadow-md bg-white sticky top-[150px]">
           <div class="flex flex-col items-center gap-3">
             <img
               src="/assets/images/profile-2.png"
@@ -126,7 +126,7 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
       </div>
       <div class="col-span-9">
         <!-- Header: Tabs -->
-        <div class="flex gap-2 bg-white rounded-[15px] p-[15px] shadow-md">
+        <div class="flex gap-2 bg-white rounded-[15px] p-[15px] shadow-md sticky top-[150px] z-10">
           <button
             v-for="tab in tabs"
             :key="tab"
@@ -208,12 +208,11 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
           >
             <template #body>
               <SliderGraph
-  title="CPU Usage"
-  :value="4.8"
-  :maxValue="10"
-  mode="success"
-/>
-
+                title="CPU Usage"
+                :value="4.8"
+                :maxValue="10"
+                mode="success"
+              />
             </template>
             <template #footer>
               <div
@@ -223,7 +222,11 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
                   <p
                     class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black"
                   >
-                    You are <span class="text-red-600">losing 0.5 stokes</span> on par 3s, But yout are <span class="text-green-600">gaining 0.1 Stokes</span> on par 4s
+                    You are
+                    <span class="text-red-600">losing 0.5 stokes</span> on par
+                    3s, But yout are
+                    <span class="text-green-600">gaining 0.1 Stokes</span> on
+                    par 4s
                   </p>
                 </div>
               </div>

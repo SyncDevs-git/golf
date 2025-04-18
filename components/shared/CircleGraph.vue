@@ -28,12 +28,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { ColorDisplayMode } from '~/types'
 
 interface Props {
   title: string
   units: string
-  mode: ColorDisplayMode
   value: number
   maxValue: number
   unitsAsSubtitle?: boolean
@@ -43,19 +41,14 @@ const props = defineProps<Props>()
 
 const radius = 50
 const circumference = 2 * Math.PI * radius
-const progress = computed(() => Math.min(Math.max(props.value / props.maxValue, 0), 1))
+
+const absValue = computed(() => Math.min(Math.abs(props.value), props.maxValue))
+const progress = computed(() => absValue.value / props.maxValue)
+
 const dashOffset = computed(() => circumference * (1 - progress.value))
 
 const circleColor = computed(() => {
-  switch (props.mode) {
-    case 'positive':
-      return 'text-[#189740]'
-    case 'negative':
-      return 'text-[#FF0000]'
-    case 'neutral':
-    default:
-      return 'text-blue-500'
-  }
+  return props.value >= 0 ? 'text-[#189740]' : 'text-[#FF0000]'
 })
 </script>
 
