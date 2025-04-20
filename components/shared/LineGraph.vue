@@ -3,11 +3,11 @@
       <!-- Chart -->
       <div
         class="linePie flex items-center justify-between border rounded-[20px] border-black/10 px-5 pt-[22px] pb-[7px] mb-[30px]">
-        <span>
+        <span class="border">
           <img src="/assets/images/golf.svg" alt="">
         </span>
-        <div ref="chartRef" style="width: 100%; height: 200px;"></div>
-        <span>
+        <div ref="chartRef" class="border h-[200px] w-full" ></div>
+        <span class="border">
           <img src="/assets/images/golf-flag.svg" alt="">
         </span>
       </div>
