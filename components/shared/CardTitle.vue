@@ -1,6 +1,6 @@
 <template>
   <div class="inline-flex items-center space-x-2">
-    <h2 class="font-bold text-lg">{{ title }}</h2>
+    <h2 class="font-playfair font-bold text-lg leading-5 text-black">{{ title }}</h2>
     <div v-if="tooltip" class="relative group cursor-pointer">
       <span>
         <svg

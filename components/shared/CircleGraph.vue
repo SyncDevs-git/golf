@@ -14,15 +14,16 @@
       <!-- Inner Content -->
       <div class="absolute inset-0 flex flex-col items-center justify-center">
         <div class="text-xl font-bold">
-          {{ value }}
+          {{ value >= 0 ? '' : '-' }}{{ value }}
         </div>
         <div v-if="!unitsAsSubtitle" class="text-sm text-gray-600 flex items-center space-x-1">
           <span>{{ units }}</span>
-          <!-- <span>{{ value >= 0 ? "▲" : "▼" }}</span> -->
         </div>
       </div>
     </div>
-    <p class="font-styrene-bold font-bold text-sm leading-[125%] text-black">{{ title }}</p>
+    <p class="font-styrene-bold font-bold text-sm leading-[125%] text-black">{{ title }} 
+      <span v-if="unitsAsSubtitle" class="font-styrene-medium font-medium text-[13px] leading-[20px] text-red">{{subTitle}}</span> 
+    </p>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import { computed } from 'vue'
 
 interface Props {
   title: string
+  subTitle: string
   units: string
   value: number
   maxValue: number

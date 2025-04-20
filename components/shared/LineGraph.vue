@@ -13,10 +13,10 @@
         </span>
       </div>
       <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
-        <CircleGraph class="col-span-3" title="Driving" :value="+0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Approach" :value="0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Short" :value="-0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Putting" :value="0.2" :maxValue="100" units="SG" />
+        <CircleGraph class="col-span-3" title="Driving" subTitle="" :value="+0.2" :maxValue="100" units="SG" />
+        <CircleGraph class="col-span-3" title="Approach" subTitle="" :value="0.2" :maxValue="100" units="SG" />
+        <CircleGraph class="col-span-3" title="Short" subTitle="" :value="-0.2" :maxValue="100" units="SG" />
+        <CircleGraph class="col-span-3" title="Putting" subTitle="" :value="0.2" :maxValue="100" units="SG" />
       </div>
     </div>
 
