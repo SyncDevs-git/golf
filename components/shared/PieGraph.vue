@@ -53,14 +53,14 @@ const initChart = () => {
             }
           })),
           label: {
-            position: 'inner',
-            show: false,
+            position: 'edge',
+            show: true,
             formatter: (params: any) => {
               const header = props.Headers.find(h => h.name === params.name);
               return header ? formatValue(header.value) : '';
             },
             fontSize: 14,
-            color: '#000'
+            color: '#000',
           },
           labelLine: {
             show: false // Disable label lines since labels are inside
@@ -73,7 +73,11 @@ const initChart = () => {
             },
             series:{
               center: ['10%', '50%'],
-            }
+            },
+            itemStyle: {
+        borderColor: '#fff',
+        borderWidth: 5
+      },
           }
         }
       ]
