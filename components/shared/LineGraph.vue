@@ -1,6 +1,5 @@
 <template>
   <div class="rounded-[20px]">
-    <div class="">
       <!-- Chart -->
       <div
         class="linePie flex items-center justify-between border rounded-[20px] border-black/10 px-5 pt-[22px] pb-[7px] mb-[30px]">
@@ -13,13 +12,11 @@
         </span>
       </div>
       <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
-        <CircleGraph class="col-span-3" title="Driving" subTitle="" :value="+0.2" :maxValue="100" units="SG" />
+        <CircleGraph class="col-span-3" title="Driving" subTitle="" :value="0.2" :maxValue="100" units="SG" />
         <CircleGraph class="col-span-3" title="Approach" subTitle="" :value="0.2" :maxValue="100" units="SG" />
         <CircleGraph class="col-span-3" title="Short" subTitle="" :value="-0.2" :maxValue="100" units="SG" />
         <CircleGraph class="col-span-3" title="Putting" subTitle="" :value="0.2" :maxValue="100" units="SG" />
       </div>
-    </div>
-
   </div>
 </template>
 
@@ -27,22 +24,16 @@
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 
-
-// defineProps<{
-//   title: string
-//   tooltip: string
-// }>()
-
 const chartRef = ref<HTMLDivElement | null>(null);
 
 // Generate a sinusoidal wave pattern with gaps at the start and end
-const numPoints = 52; // Add 2 extra points for the gaps (one at each end)
+const numPoints = 52;
 const timeData = Array.from({ length: numPoints }, (_, i) => i.toString());
 const electricityData = Array.from({ length: numPoints }, (_, i) => {
   if (i === 0 || i === numPoints - 1) {
-    return null; // Create gaps at the start and end
+    return null;
   }
-  return 20 * Math.sin(((i - 1) / (numPoints - 3)) * 4 * Math.PI); // Adjust wave for the remaining points
+  return 20 * Math.sin(((i - 1) / (numPoints - 3)) * 4 * Math.PI);
 });
 
 onMounted(() => {
@@ -82,7 +73,7 @@ onMounted(() => {
           top: '50%',
           style: {
             stroke: '#000',
-            lineDash: [5, 5], // Dotted line pattern
+            lineDash: [5, 5],
             lineWidth: 1
           }
         }

@@ -14,7 +14,7 @@
       <!-- Inner Content -->
       <div class="absolute inset-0 flex flex-col items-center justify-center">
         <div class="text-xl font-bold">
-          {{ value >= 0 ? '' : '-' }}{{ value }}
+          {{ value >= 0 ? '+' : '' }}{{ value }}
         </div>
         <div v-if="!unitsAsSubtitle" class="text-sm text-gray-600 flex items-center space-x-1">
           <span>{{ units }}</span>
