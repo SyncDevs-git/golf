@@ -5,7 +5,9 @@
       <div v-for="(header, index) in Headers" :key="index" class="legend-item">
         <span class="legend-color" :style="{ backgroundColor: header.color }"></span>
         <span class="legend-label">{{ header.name }}</span>
-        <span class="legend-value">{{ formatValue(header.value) }}</span>
+        <span class="legend-value">{{ formatValue(header.value) }}
+          <span class="arrow"></span>
+        </span>
       </div>
     </div>
     <!-- Pie Chart -->
@@ -47,9 +49,9 @@ const initChart = () => {
           center: ['50%', '50%'], // Center the pie chart
           data: props.data.map((item, index) => ({
             name: item.name,
-            value: Math.abs(item.value), // Use absolute value for pie chart proportions
+            value: Math.abs(item.value),
             itemStyle: {
-              color: props.Headers[index].color // Use color from Headers
+              color: props.Headers[index].color 
             }
           })),
           label: {
@@ -59,7 +61,7 @@ const initChart = () => {
               const header = props.Headers.find(h => h.name === params.name);
               return header ? formatValue(header.value) : '';
             },
-            fontSize: 14,
+            fontSize: 12,
             color: '#000',
           },
           labelLine: {

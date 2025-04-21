@@ -19,18 +19,11 @@ const tabs = [
 ];
 const activeTab = ref("Overview");
 
-// Format the value (e.g., -2.0 to "-2.0", 0.2 to "+0.2")
-const formatValue = (value: number) => {
-  return value >= 0 ? `+${value}` : `${value}`;
-};
-
-// Color for strokes gained (red for negative, teal for positive)
-const strokesGainedColor = strokesGained < 0 ? "#FF0000" : "#00A1A1";
-
-// Color for insights (red for negative, teal for positive)
-const getInsightColor = (value: number) => {
-  return value < 0 ? "#FF0000" : "#00A1A1";
-};
+const innerCardTabs = [
+  "What to Work On",
+  "What’s Helping You",
+];
+const innerCardActiveTab = ref("What to Work On");
 
 const pieData = [
   { name: "Total Strokes Gained", value: -2.1 },
@@ -47,6 +40,96 @@ const pieHeaders = [
   { name: "SG Approach", color: "#FFD700", value: 2.1 },
   { name: "SG Putting", color: "#808080", value: 2.1 },
 ];
+
+const graphsData1 = [
+  {
+    title: 'Driving',
+    value: 0.2,
+    maxValue: 100,
+    units: 'SG',
+    unitsAsSubtitle: false,
+    mode: 'positive' as const
+  },
+  {
+    title: 'Approach',
+    value: 0.2,
+    maxValue: 100,
+    units: 'SG',
+    unitsAsSubtitle: false,
+    mode: 'positive' as const
+  },
+  {
+    title: 'Short',
+    value: -0.2,
+    maxValue: 100,
+    units: 'SG',
+    unitsAsSubtitle: false,
+    mode: 'negative' as const
+  },
+  {
+    title: 'Putting',
+    value: 0.2,
+    maxValue: 100,
+    units: 'SG',
+    unitsAsSubtitle: false,
+    mode: 'positive' as const
+  }
+]
+
+const graphsData = [
+  {
+    title: 'Par 3s',
+    units: '-0.5 SG / Hole',
+    value: 4.9,
+    maxValue: 100,
+    unitsAsSubtitle: true,
+    mode: 'neutral' as const
+  },
+  {
+    title: 'Par 3s',
+    units: '-0.5 SG / Hole',
+    value: 4.9,
+    maxValue: 100,
+    unitsAsSubtitle: true,
+    mode: 'neutral' as const
+  },
+  {
+    title: 'Par 3s',
+    units: '-0.5 SG / Hole',
+    value: 4.9,
+    maxValue: 100,
+    unitsAsSubtitle: true,
+    mode: 'neutral' as const
+  }
+]
+
+const scoringBreakdownData = [
+  {
+    title: 'Birdies',
+    startValue: '0.4',
+    endValue: '0',
+    mode: 'negative' as const,
+  },
+  {
+    title: 'Pars',
+    startValue: '4',
+    endValue: '5.6',
+    mode: 'neutral' as const,
+  },
+  {
+    title: 'Bogeys',
+    startValue: '8.9',
+    endValue: '7.5',
+    mode: 'positive' as const,
+  },
+  {
+    title: 'Double +',
+    startValue: '5.7',
+    endValue: '4.8',
+    mode: 'positive' as const,
+  },
+]
+
 
 const mainValue = "-2.0";
 const delta = Number(mainValue);
@@ -87,14 +170,20 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
             <div class="border-[2px] border-[rgba(0,0,0,0.08)] rounded-xl w-full">
               <div class="p-4">
                 <div class="top-section flex items-center justify-center gap-[13px]">
-                  <div class="bg-black rounded-xl font-styrene-bold font-bold text-[26px] leading-[100%] text-white px-[12px] py-[15px]">{{ mainValue }}</div>
+                  <div
+                    class="bg-black rounded-xl font-styrene-bold font-bold text-[26px] leading-[100%] text-white px-[12px] py-[15px]">
+                    {{ mainValue }}</div>
                   <div class="delta-section">
-                    <span class="delta flex items-center justify-start text-red font-styrene-bold text-lg leading-[100%]" :class="{ negative: delta < 0, positive: delta > 0 }">
+                    <span
+                      class="delta flex items-center justify-start text-red font-styrene-bold text-lg leading-[100%]"
+                      :class="{ negative: delta < 0, positive: delta > 0 }">
                       {{ formattedDelta }}
                       <span class="arrow">
                         <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.35982 4.46651C4.73066 4.77555 5.26934 4.77555 5.64018 4.46651L8.87814 1.76822C9.59665 1.16946 9.17325 0 8.23795 0H1.76205C0.826753 0 0.403351 1.16946 1.12187 1.76822L4.35982 4.46651Z" fill="#FF0000"/>
-                </svg>
+                          <path
+                            d="M4.35982 4.46651C4.73066 4.77555 5.26934 4.77555 5.64018 4.46651L8.87814 1.76822C9.59665 1.16946 9.17325 0 8.23795 0H1.76205C0.826753 0 0.403351 1.16946 1.12187 1.76822L4.35982 4.46651Z"
+                            fill="#FF0000" />
+                        </svg>
                       </span>
                     </span>
                     <span class="label">SG/Round</span>
@@ -110,9 +199,13 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
                 Show Handicap Breakdown
                 <span class="arrow">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.0098 9.87891H3.5332C3.0477 9.87891 2.6543 9.48551 2.6543 9C2.6543 8.51449 3.0477 8.12109 3.5332 8.12109H14.0098C14.4953 8.12109 14.8887 8.51449 14.8887 9C14.8887 9.48551 14.4953 9.87891 14.0098 9.87891Z" fill="black"/>
-<path d="M9.98474 14.0361C9.74885 14.0361 9.5133 13.9416 9.33998 13.7549C9.00986 13.3991 9.03095 12.8429 9.38674 12.5128L13.165 9.00881L9.27248 5.49529C8.91213 5.17009 8.88365 4.61427 9.20884 4.25392C9.53404 3.89357 10.0899 3.86509 10.4502 4.19029L15.0557 8.34752C15.2388 8.51275 15.344 8.74724 15.3457 8.99404C15.3475 9.24084 15.2455 9.47674 15.0645 9.64443L10.582 13.8017C10.4129 13.9585 10.1985 14.0361 9.98474 14.0361Z" fill="black"/>
-</svg>
+                    <path
+                      d="M14.0098 9.87891H3.5332C3.0477 9.87891 2.6543 9.48551 2.6543 9C2.6543 8.51449 3.0477 8.12109 3.5332 8.12109H14.0098C14.4953 8.12109 14.8887 8.51449 14.8887 9C14.8887 9.48551 14.4953 9.87891 14.0098 9.87891Z"
+                      fill="black" />
+                    <path
+                      d="M9.98474 14.0361C9.74885 14.0361 9.5133 13.9416 9.33998 13.7549C9.00986 13.3991 9.03095 12.8429 9.38674 12.5128L13.165 9.00881L9.27248 5.49529C8.91213 5.17009 8.88365 4.61427 9.20884 4.25392C9.53404 3.89357 10.0899 3.86509 10.4502 4.19029L15.0557 8.34752C15.2388 8.51275 15.344 8.74724 15.3457 8.99404C15.3475 9.24084 15.2455 9.47674 15.0645 9.64443L10.582 13.8017C10.4129 13.9585 10.1985 14.0361 9.98474 14.0361Z"
+                      fill="black" />
+                  </svg>
 
                 </span>
               </div>
@@ -123,19 +216,17 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
       <div class="col-span-9">
         <!-- Header: Tabs -->
         <div class="flex gap-2 bg-white rounded-[15px] p-[15px] shadow-md">
-          <button v-for="tab in tabs" :key="tab" :class="[
-            'px-[15px] py-[9px] font-styrene-bold font-bold text-[15px] leading-[120%] hover:bg-[#FFA30033] hover:text-[#FFA300] rounded-[10px]',
-            activeTab === tab
-              ? 'bg-[#FFA30033] text-[#FFA300]'
-              : 'text-black/25',
-          ]" @click="activeTab = tab">
-            {{ tab }}
-          </button>
+          <ContainerCard :tabs="tabs" v-model="activeTab" />
         </div>
         <div class="scroll">
           <ContentCard title="Your Stokes Gained (SG) Breakdown Chart" tooltip="SG is a way to measure performance">
             <template #body>
               <LineGraph />
+              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
+                <CircleGraph class="col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
+                  :value="item.value" :maxValue="item.maxValue" :units="item.units"
+                  :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
+              </div>
             </template>
 
             <template #footer>
@@ -174,10 +265,33 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
           </ContentCard>
           <ContentCard title="Scoring Averages" tooltip="SG is a way to measure performance">
             <template #body>
+              <TabControls :tabs="innerCardTabs" v-model="innerCardActiveTab" />
               <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
-                <CircleGraph class="col-span-4" title="Par 3s" subTitle="-0.5 SG / Hole" :value="4.9" :maxValue="100" units="" />
-                <CircleGraph class="col-span-4" title="Par 3s" subTitle="-0.5 SG / Hole" :value="4.9" :maxValue="100" units="" />
-                <CircleGraph class="col-span-4" title="Par 3s" subTitle="-0.5 SG / Hole" :value="4.9" :maxValue="100" units="" />
+                <CircleGraph class="col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
+                  :units="item.units" :value="item.value" :maxValue="item.maxValue"
+                  :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
+              </div>
+            </template>
+            <template #footer>
+              <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center mt-[30px]">
+                <div class="">
+                  <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black">
+                    You are
+                    <span class="text-red">losing 0.5 stokes</span> on par
+                    3s, But yout are
+                    <span class="text-green-600">gaining 0.1 Stokes</span> on
+                    par 4s
+                  </p>
+                </div>
+              </div>
+            </template>
+          </ContentCard>
+          <ContentCard title="Scoring Averages" tooltip="SG is a way to measure performance">
+            <template #body>
+              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
+                <CircleGraph class="col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
+                  :units="item.units" :value="item.value" :maxValue="item.maxValue"
+                  :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
               </div>
             </template>
             <template #footer>
@@ -196,7 +310,16 @@ const formattedDelta = `${Math.abs(delta).toFixed(1)}`;
           </ContentCard>
           <ContentCard title="Scoring Breakdown" tooltip="SG is a way to measure performance">
             <template #body>
-              <SliderGraph title="CPU Usage" :value="4.8" :maxValue="10" mode="success" />
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-6 border rounded-[20px] px-[25px] py-[14px]"
+                  v-for="(card, index) in scoringBreakdownData">
+                  <StartEndDisplay :key="index" :title="card.title" :startValue="card.startValue"
+                    :endValue="card.endValue" :mode="card.mode" />
+                  <SliderGraph :title="card.title" :value="parseFloat(card.endValue)" :maxValue="10" :mode="card.mode" />
+                </div>
+              </div>
+
+
             </template>
             <template #footer>
               <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center mt-[30px]">

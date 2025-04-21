@@ -3,19 +3,13 @@
       <!-- Chart -->
       <div
         class="linePie flex items-center justify-between border rounded-[20px] border-black/10 px-5 pt-[22px] pb-[7px] mb-[30px]">
-        <span class="border">
+        <span class="">
           <img src="/assets/images/golf.svg" alt="">
         </span>
-        <div ref="chartRef" class="border h-[200px] w-full" ></div>
-        <span class="border">
+        <div ref="chartRef" class="h-[200px] w-full" ></div>
+        <span class="">
           <img src="/assets/images/golf-flag.svg" alt="">
         </span>
-      </div>
-      <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
-        <CircleGraph class="col-span-3" title="Driving" subTitle="" :value="0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Approach" subTitle="" :value="0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Short" subTitle="" :value="-0.2" :maxValue="100" units="SG" />
-        <CircleGraph class="col-span-3" title="Putting" subTitle="" :value="0.2" :maxValue="100" units="SG" />
       </div>
   </div>
 </template>
@@ -41,19 +35,18 @@ onMounted(() => {
     const chart = echarts.init(chartRef.value);
 
     chart.setOption({
-      title: {},
       tooltip: {
         trigger: 'axis',
         axisPointer: {
           type: 'cross'
         }
       },
+      responsive: true,
       toolbox: { show: false },
       xAxis: {
         show: true,
         type: 'category',
         boundaryGap: true,
-        // data: timeData
       },
       yAxis: {
         type: 'value',
@@ -62,22 +55,9 @@ onMounted(() => {
         },
         axisPointer: {
           snap: false
-        }
+        },
+        scale: true
       },
-      // Add middle dotted line using graphic elements
-      graphic: [
-        {
-          type: 'line',
-          left: '0%',
-          right: '0%',
-          top: '50%',
-          style: {
-            stroke: '#000',
-            lineDash: [5, 5],
-            lineWidth: 1
-          }
-        }
-      ],
       visualMap: {
         show: false,
         dimension: 0,

@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-col items-center justify-center px-[65px]">
     <!-- Title -->
-    <div class="text-lg font-semibold flex items-center space-x-1">
-      <span v-if="unitsAsSubtitle" class="text-sm text-gray-500">({{ units }})</span>
-    </div>
     <div class="relative w-32 h-32 mt-2">
       <svg class="w-full h-full transform -rotate-90">
         <circle class="text-gray-200" stroke-width="10" stroke="currentColor" fill="transparent" r="50" cx="64"
@@ -22,24 +19,16 @@
       </div>
     </div>
     <p class="font-styrene-bold font-bold text-sm leading-[125%] text-black">{{ title }} 
-      <span v-if="unitsAsSubtitle" class="font-styrene-medium font-medium text-[13px] leading-[20px] text-red">{{subTitle}}</span> 
+      <span v-if="unitsAsSubtitle && units" class="font-styrene-medium font-medium text-[13px] leading-[20px] text-red ml-[7px]">{{units}}</span> 
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { PieChartProps } from '~/types';
 
-interface Props {
-  title: string
-  subTitle: string
-  units: string
-  value: number
-  maxValue: number
-  unitsAsSubtitle?: boolean
-}
-
-const props = defineProps<Props>()
+const props = defineProps<PieChartProps>()
 
 const radius = 50
 const circumference = 2 * Math.PI * radius
@@ -50,8 +39,17 @@ const progress = computed(() => absValue.value / props.maxValue)
 const dashOffset = computed(() => circumference * (1 - progress.value))
 
 const circleColor = computed(() => {
-  return props.value >= 0 ? 'text-[#189740]' : 'text-[#FF0000]'
-})
+    switch (props.mode) {
+      case 'positive':
+        return 'text-[#189740]'
+      case 'neutral':
+        return 'text-[#FFC107]'
+      case 'negative':
+        return 'text-[#FF0000]'
+      default:
+        return 'text-[#2196F3]'
+    }
+  })
 </script>
 
 <style scoped>
