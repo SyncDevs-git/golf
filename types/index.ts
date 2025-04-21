@@ -22,3 +22,15 @@ export type PieChartHeader = {
     title: string;
     valueField: string;
 };
+
+export interface PieChartProps {
+    title: string
+    units?: string
+    value: number
+    maxValue: number
+    mode: ColorDisplayMode
+    unitsAsSubtitle?: boolean
+}
+
+
+  

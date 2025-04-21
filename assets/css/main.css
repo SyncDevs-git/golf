@@ -45,16 +45,18 @@ nav li a:hover svg path{
 .legend {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 30px;
   flex-basis: 69%;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 49%;
+  /* width: 49%; */
+  width: auto;
 }
 
 .legend-color {
@@ -69,7 +71,18 @@ nav li a:hover svg path{
 }
 
 .legend-value {
-  @apply w-min border border-[#ddd] rounded-[5px] py-1 px-2 relative bg-white after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-[4px] after:bg-[#ddd] after:w-[7px] after:h-[7px] after:rotate-45 after:-z-10;
+  @apply w-min border border-[#ddd] rounded-[5px] py-1 px-2 relative bg-white;
+}
+.legend-value .arrow{
+  position: absolute;
+  top: 50%;
+  left: -11px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 7px solid #ddd; /* Change color as needed */
 }
 
 .chart {

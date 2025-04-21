@@ -24,6 +24,7 @@ module.exports = {
         teritory: "#08201C",
         brandGreen: "#189740",
         "gray-light": "#AAAAAA",
+        "medium-gray": "#999999",
         deepForest: "#0A2B26",
         sonfSliver: "#E7EAEA",
         red: "#FF0000",
