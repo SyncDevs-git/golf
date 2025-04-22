@@ -1,13 +1,13 @@
 <template>
-  <div class="slider-graph">
-    <div class="title">{{ title }}</div>
-    <div class="bar-container">
-      <div class="bar">
+  <div class="w-full">
+    <div class="font-styrene-medium font-medium text-[17px] leading-[20px] text-black">{{ title }}</div>
+    <div class="relative mt-[22px]">
+      <div class="h-[5px] w-full bg-bright-gray">
         <div class="bar-fill" :style="{ width: fillPercentage + '%', backgroundColor: barColor }"></div>
       </div>
       <div
-        class="value-bubble w-[34px] h-[30px] absolute -top-1/2 -translate-y-[0px] font-styrene-bold font-bold text-[12px] leading-[30px] text-center text-white rounded-[7px]"
-        :style="{ left: 'calc(' + fillPercentage + '% - 1.25rem)', backgroundColor: barColor }">
+        class="value-bubble w-[34px] h-[30px] absolute top-1/2 -translate-y-1/2 font-styrene-bold font-bold text-[12px] leading-[30px] text-center text-white rounded-[7px]"
+        :style="{ left: 'calc(' + fillPercentage + '% - 0rem)', backgroundColor: barColor }">
         {{ value }}
       </div>
     </div>
@@ -35,7 +35,7 @@ const barColor = computed(() => {
     case 'positive':
       return '#4CAF50'
     case 'neutral':
-      return '#FFC107'
+      return '#999999'
     case 'negative':
       return '#F44336'
     default:
@@ -45,17 +45,6 @@ const barColor = computed(() => {
 </script>
 
 <style scoped>
-.slider-graph {
-  font-family: sans-serif;
-  width: 100%;
-  max-width: 400px;
-}
-
-.title {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
 .bar-container {
   position: relative;
   height: 24px;
