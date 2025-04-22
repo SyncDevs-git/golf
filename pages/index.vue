@@ -198,11 +198,13 @@ const profileData = {
         <div class="scroll">
           <ContentCard title="Your Stokes Gained (SG) Breakdown Chart" tooltip="SG is a way to measure performance">
             <template #body>
-              <LineGraph />
-              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
-                <CircleGraph class="col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
-                  :value="item.value" :maxValue="item.maxValue" :units="item.units"
-                  :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
+              <div class="p-[25px]">
+                <LineGraph />
+                <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
+                  <CircleGraph class="col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
+                    :value="item.value" :maxValue="item.maxValue" :units="item.units"
+                    :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
+                </div>
               </div>
             </template>
 
@@ -248,7 +250,7 @@ const profileData = {
               <TabControls :tabs="innerCardTabs" v-model="innerCardActiveTab" />
             </template>
             <template #body>
-              <div class="grid grid-cols-12 gap-4 divide-y divide-dashed divide-black/[15%]">
+              <div class="grid grid-cols-12 gap-4 divide-y divide-dashed divide-black/[15%] p-[25px]">
                 <InsightDisplay class="col-span-12" v-for="(item, i) in insightItems" :key="i" :title="item.title"
                   :subtitle="item.subtitle" :tag="item.tag" :index="i" :value="item.value" :mode="item.mode"
                   :icon="item.icon" />
@@ -258,7 +260,7 @@ const profileData = {
 
           <ContentCard title="How to fix your golf swing via instruction lessons?" tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4 divide-y divide-dashed divide-black/[15%]">
+              <div class="grid grid-cols-12 gap-4 px-[25px]">
                 
               </div>
             </template>
@@ -266,7 +268,7 @@ const profileData = {
 
           <ContentCard title="Scoring Averages" tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200 ">
+              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200 py-[25px]">
                 <CircleGraph class="col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
                   :units="item.units" :value="item.value" :maxValue="item.maxValue"
                   :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
@@ -291,7 +293,7 @@ const profileData = {
 
           <ContentCard title="Scoring Breakdown" tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4">
+              <div class="grid grid-cols-12 gap-4 p-[25px]">
                 <div class="col-span-6 border rounded-[20px] py-[30px] px-[25px]"
                   v-for="(card, index) in scoringBreakdownData">
                   <StartEndDisplay :key="index" :title="card.title" :startValue="card.startValue"

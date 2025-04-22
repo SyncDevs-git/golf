@@ -12,18 +12,6 @@
             item.points
           }}</span>
         </div>
-        <!-- <div class="flex items-center justify-between gap-1 py-[15px] border-t border-dashed border-gray-light">
-          <span class="text-xs text-gray-light">Rounds</span>
-          <span class="text-base font-semibold text-gray-light">{{
-            rounds
-          }}</span>
-        </div>
-        <div class="flex items-center justify-between gap-1 py-[15px] border-t border-dashed border-gray-light">
-          <span class="text-xs text-gray-light">Rounds</span>
-          <span class="text-base font-semibold text-gray-light">{{
-            rounds
-          }}</span>
-        </div> -->
       </div>
       <div class="border-[2px] border-[rgba(0,0,0,0.08)] rounded-xl w-full">
         <div class="p-4">
