@@ -328,7 +328,9 @@ const profileData = {
               </NuxtLink>
             </template>
             <template #body>
-              <PieGraph :data="pieData" :Headers="pieHeaders" />
+              <div class="px-[25px]">
+                <PieGraph :data="pieData" :Headers="pieHeaders" />
+              </div>
             </template>
             <template #footer>
               <div class="border-t px-[25px] py-5">
