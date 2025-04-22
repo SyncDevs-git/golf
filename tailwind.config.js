@@ -28,6 +28,7 @@ module.exports = {
         deepForest: "#0A2B26",
         sonfSliver: "#E7EAEA",
         red: "#FF0000",
+        'bright-gray': "#EEEEEE",
       },
     },
     container: {
