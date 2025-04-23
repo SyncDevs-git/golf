@@ -3,11 +3,18 @@ import LineGraph from "@/components/shared/LineGraph.vue";
 import PieGraph from "@/components/shared/PieGraph.vue";
 import redFlag from '~/assets/images/red-flag.svg'
 import profileImg from '~/assets/images/profile-2.png'
+import { ref } from 'vue'
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
-// Sidebar data
-const strokesGained = -2.0;
-const handicap = 56;
-const rounds = 1500;
+// Import Swiper styles
+import 'swiper/css'
+
+import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
+// import required modules
+import { FreeMode, Navigation, Thumbs, A11y } from 'swiper/modules'
 
 // Tabs
 const tabs = [
@@ -166,7 +173,7 @@ const insightItems = [
 const profileData = {
   img: profileImg,
   name: 'Smith William',
-  status:[
+  status: [
     {
       name: 'Shots',
       points: 1300
@@ -182,13 +189,27 @@ const profileData = {
   ],
   mainValue: "-2.0"
 }
+
+const thumbsSwiper = ref()
+
+const setThumbsSwiper = (swiper: any) => {
+  thumbsSwiper.value = swiper
+}
+
+const modules = ref([FreeMode, Navigation, Thumbs, A11y])
+
+const getImageURL = (id: number, highRes?: boolean) => {
+  const resolution = highRes ? '800/600' : '200/100'
+
+  return `https://picsum.photos/id/${110 + id}/${resolution}`
+}
 </script>
 
 <template>
   <div class="container">
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-3">
-        <ProfileCard :data="profileData"/>
+        <ProfileCard :data="profileData" />
       </div>
       <div class="col-span-9">
         <!-- Header: Tabs -->
@@ -258,10 +279,33 @@ const profileData = {
             </template>
           </ContentCard>
 
-          <ContentCard title="How to fix your golf swing via instruction lessons?" tooltip="SG is a way to measure performance">
+          <ContentCard title="How to fix your golf swing via instruction lessons?"
+            tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4 px-[25px]">
-                
+              <div class="grid grid-cols-12 gap-4 pt-[25px] pb-[29px]">
+                <div class="col-span-12">
+                  <div class="px-[25px]">
+                    <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black">How to hit a plugged bunker shot with Brittany Lang</h4>
+                    <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black mb-5">Enim ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
+                  </div>
+                  <div class="pb-[25px] mb-[25px]  border-b px-[25px]">
+                    <swiper :spaceBetween="10" :navigation="false" :thumbs="{ swiper: thumbsSwiper }" :modules="modules"
+                      class="rounded-[20px]">
+                      <swiper-slide v-for="i in 10" class="">
+                        <img :src="getImageURL(i, true)" class="w-full"/>
+                      </swiper-slide>
+                    </swiper>
+                  </div>
+                  <div class="px-[25px]">
+                    <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="2.8" :navigation="false" :watchSlidesProgress="true"
+                      :grabCursor="true" :modules="modules" >
+                      <swiper-slide v-for="i in 10">
+                        <img :src="getImageURL(i)" class="w-full rounded-[15px] mb-[10px]"/>
+                        <p class="font-playfair font-extrabold text-[17px] leading-[153%] text-black">How to hit a plugged bunker shot with Brittany Lang</p>
+                      </swiper-slide>
+                    </swiper>
+                  </div>
+                </div>
               </div>
             </template>
           </ContentCard>
