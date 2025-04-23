@@ -126,3 +126,24 @@ nav li a:hover svg path{
   font-weight: bold;
   margin-left: 4px;
 }
+
+/* swiper js */
+.swiper-slide.selected .desc {
+  color: #721e2e;
+  font-weight: bold;
+}
+.swiper-custom-next,
+.swiper-custom-prev {
+  position: absolute;
+  top: 35%;
+  z-index: 10;
+  background: white;
+  padding: 10px;
+  cursor: pointer;
+}
+.swiper-custom-next {
+  right: 0;
+}
+.swiper-custom-prev {
+  left: 0;
+}
