@@ -213,7 +213,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
       </div>
       <div class="col-span-9">
         <!-- Header: Tabs -->
-        <div class="flex gap-2 bg-white rounded-[15px] p-[15px] shadow-md">
+        <div class="flex gap-2 bg-white rounded-[15px] p-[15px]">
           <ContainerCard :tabs="tabs" v-model="activeTab" />
         </div>
         <div class="scroll">
