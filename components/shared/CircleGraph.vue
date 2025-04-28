@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center px-[65px]">
+  <div class="flex flex-col items-center justify-center">
     <!-- Title -->
     <div class="relative w-32 h-32 mt-2">
       <svg class="w-full h-full transform -rotate-90">
@@ -41,13 +41,13 @@ const dashOffset = computed(() => circumference * (1 - progress.value))
 const circleColor = computed(() => {
     switch (props.mode) {
       case 'positive':
-        return 'text-[#189740]'
+        return 'text-brandGreen'
       case 'neutral':
-        return 'text-[#FFC107]'
+        return 'text-amber'
       case 'negative':
-        return 'text-[#FF0000]'
+        return 'text-red'
       default:
-        return 'text-[#2196F3]'
+        return 'text-blue'
     }
   })
 </script>

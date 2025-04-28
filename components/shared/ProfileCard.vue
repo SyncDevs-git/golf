@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-[20px] p-5 shadow-md bg-white sticky top-[130px]">
+  <div class="rounded-[20px] pt-[41px] px-5 pb-5 bg-white sticky top-[130px]">
     <div class="flex flex-col items-center">
       <img :src="data.img" alt="Avatar" class="w-[112px] h-[112px] rounded-full mb-[22px]" />
       <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light mb-[28px]">

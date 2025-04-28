@@ -29,6 +29,8 @@ module.exports = {
         sonfSliver: "#E7EAEA",
         red: "#FF0000",
         'bright-gray': "#EEEEEE",
+        amber: "#FFC107",
+        blue: "#2196F3",
       },
     },
     container: {
