@@ -25,11 +25,11 @@
       </span>
       
       <div
-        class="absolute left-1/2 -top-[48px] -translate-x-1/2 w-max bg-black text-white text-xs p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20"
+        class="absolute left-1/2 -top-[48px] -translate-x-1/2 w-max bg-black text-white text-xs px-5 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20"
       >
         {{ tooltip }}
       </div>
-      <div class="w-3 h-3 -mr-2 rotate-45 bg-black absolute top-[-30px] left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+      <div class="w-3 h-3 -mr-2 rotate-45 bg-black absolute top-[-25px] left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
     </div>
   </div>
 </template>

@@ -28,11 +28,78 @@ const tabs = [
 ];
 const activeTab = ref("Overview");
 
-const innerCardTabs = [
-  "What to Work On",
-  "What’s Helping You",
-];
-const innerCardActiveTab = ref("What to Work On");
+// 1. Define TabType at the top
+type TabType = "What to Work On" | "What’s Helping You";
+
+// 2. Now use TabType
+const innerCardTabs: TabType[] = ["What to Work On", "What’s Helping You"];
+const innerCardActiveTab = ref<TabType>("What to Work On");
+
+const allInsightItems: Record<TabType, {
+  title: string;
+  subtitle: string;
+  tag: string;
+  value: number;
+  mode: 'positive' | 'negative';
+  icon: string;
+}[]> = {
+  "What to Work On": [
+    {
+      title: 'Game',
+      subtitle: '150 - 200 Yard Approach',
+      tag: 'Approach Game',
+      value: -2.2,
+      mode: 'negative',
+      icon: redFlag,
+    },
+    {
+      title: 'Game',
+      subtitle: '150 - 200 Yard Approach',
+      tag: 'Approach Game',
+      value: -1.5,
+      mode: 'negative',
+      icon: redFlag,
+    },
+    {
+      title: 'Game',
+      subtitle: '150 - 200 Yard Approach',
+      tag: 'Approach Game',
+      value: -0.7,
+      mode: 'negative',
+      icon: redFlag,
+    }
+  ],
+  "What’s Helping You": [
+    {
+      title: 'Putting',
+      subtitle: 'Inside 10 Feet',
+      tag: 'Putting',
+      value: 2.5,
+      mode: 'positive',
+      icon: redFlag,
+    },
+    {
+      title: 'Driving',
+      subtitle: 'Off the Tee',
+      tag: 'Driving',
+      value: 1.7,
+      mode: 'positive',
+      icon: redFlag,
+    },
+    {
+      title: 'Short Game',
+      subtitle: '30 Yard Pitches',
+      tag: 'Short Game',
+      value: 1.2,
+      mode: 'positive',
+      icon: redFlag,
+    }
+  ]
+};
+
+const insightItems = computed(() => {
+  return allInsightItems[innerCardActiveTab.value];
+});
 
 const pieData = [
   { name: "Total Strokes Gained", value: -2.1 },
@@ -139,36 +206,6 @@ const scoringBreakdownData = [
   },
 ]
 
-const insightItems = [
-  {
-    title: 'Game',
-    subtitle: '150 - 200 Yard Approach',
-    tag: 'Approach Game',
-    index: 0,
-    value: -2.2,
-    mode: 'negative' as const,
-    icon: redFlag
-  },
-  {
-    title: 'Game',
-    subtitle: '150 - 200 Yard Approach',
-    tag: 'Approach Game',
-    index: 1,
-    value: 1.2,
-    mode: 'positive' as const,
-    icon: redFlag
-  },
-  {
-    title: 'Game',
-    subtitle: '150 - 200 Yard Approach',
-    tag: 'Approach Game',
-    index: 1,
-    value: -2.2,
-    mode: 'negative' as const,
-    icon: redFlag
-  }
-]
-
 
 const profileData = {
   img: profileImg,
@@ -207,7 +244,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
 
 <template>
   <div class="container">
-    <div class="grid grid-cols-12 gap-4">
+    <div class="grid grid-cols-12 gap-[30px]">
       <div class="col-span-3">
         <ProfileCard :data="profileData" />
       </div>
@@ -219,9 +256,9 @@ const getImageURL = (id: number, highRes?: boolean) => {
         <div class="scroll">
           <ContentCard title="Your Stokes Gained (SG) Breakdown Chart" tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="p-[25px]">
+              <div class="py-[30px] px-[25px]">
                 <LineGraph />
-                <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200">
+                <div class="grid grid-cols-12 divide-x divide-slate-200">
                   <CircleGraph class="col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
                     :value="item.value" :maxValue="item.maxValue" :units="item.units"
                     :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
@@ -230,8 +267,8 @@ const getImageURL = (id: number, highRes?: boolean) => {
             </template>
 
             <template #footer>
-              <div class="px-[25px] py-5">
-                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center mt-[30px]">
+              <div class="px-[25px] pb-[30px]">
+                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
                   <div class="max-w-[588px] mx-auto">
                     <span
                       class="bg-white inline-flex w-[47px] h-[47px] rounded-full items-center justify-center mb-[14px]">
