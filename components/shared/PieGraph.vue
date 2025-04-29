@@ -32,7 +32,7 @@ const chartRef = ref<HTMLDivElement | null>(null);
 let chartInstance: echarts.ECharts | null = null;
 
 // Function to format the value (e.g., -2.1 to "-2.1", 2.1 to "+2.1")
-const formatValue = (value: number) => {
+const formatValue = (value: any) => {
   return value >= 0 ? `+${value}` : `${value}`;
 };
 
@@ -51,8 +51,9 @@ const initChart = () => {
         {
           name: 'Stokes Gained',
           type: 'pie',
-          radius: '90%', // Size of the pie chart
-          center: ['50%', '50%'], // Center the pie chart
+          selectedMode: 'single',
+          radius: '90%',
+          center: ['50%', '50%'],
           data: props.data.map((item, index) => ({
             name: item.name,
             value: Math.abs(item.value),
@@ -61,22 +62,22 @@ const initChart = () => {
             }
           })),
           label: {
-            position: '',
-            show: true,
+            position: 'inner',
+            show: false,
+            fontSize: 10,
+            fontWeight: '500',
+            fontFamily: 'font-styrene-medium',
             formatter: (params: any) => {
               const header = props.Headers.find(h => h.name === params.name);
-              return header ? formatValue(header.value) : '';
+              return header ? `${formatValue(header.value)} \n ${formatValue(header.name)}` : '';
             },
-            fontSize: 12,
-            color: '#000',
-          },
-          labelLine: {
-            show: false
           },
           emphasis: {
             // focus: 'self', 
             label: {
-              fontSize: 16, 
+              fontSize: 20,
+              fontWeight: '500',
+              fontFamily: 'font-styrene-medium',
               show: true,
             },
             series: {
@@ -84,7 +85,7 @@ const initChart = () => {
             },
             itemStyle: {
               borderColor: '#fff',
-              borderWidth: 5
+              borderWidth: 10
             },
           }
         }
