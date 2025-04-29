@@ -36,58 +36,9 @@ nav li a:hover svg path{
   fill-opacity: 1; 
 }
 
-.pie-graph-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.legend {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  flex-basis: 69%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  /* width: 49%; */
-  width: auto;
-}
-
-.legend-color {
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  border-radius: 5px;
-}
-
-.legend-label {
- @apply font-styrene-medium font-medium text-sm leading-[125%];
-}
-
-.legend-value {
-  @apply w-min border border-[#ddd] rounded-[5px] py-1 px-2 relative bg-white;
-}
-.legend-value .arrow{
-  position: absolute;
-  top: 50%;
-  left: -11px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-right: 7px solid #ddd; /* Change color as needed */
-}
-
 .chart {
   width: 100%;
-  height: 200px;
+  height: 400px;
 }
 
 .delta-section {

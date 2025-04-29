@@ -308,7 +308,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
               <TabControls :tabs="innerCardTabs" v-model="innerCardActiveTab" />
             </template>
             <template #body>
-              <div class="grid grid-cols-12 gap-4 divide-y divide-dashed divide-black/[15%] p-[25px]">
+              <div class="grid grid-cols-12 divide-y divide-dashed divide-black/[15%] px-[25px]">
                 <InsightDisplay class="col-span-12" v-for="(item, i) in insightItems" :key="i" :title="item.title"
                   :subtitle="item.subtitle" :tag="item.tag" :index="i" :value="item.value" :mode="item.mode"
                   :icon="item.icon" />
@@ -322,7 +322,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
               <div class="grid grid-cols-12 gap-4 pt-[25px] pb-[29px]">
                 <div class="col-span-12">
                   <div class="px-[25px]">
-                    <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black">How to hit a plugged bunker shot with Brittany Lang</h4>
+                    <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black mb-[10px]">How to hit a plugged bunker shot with Brittany Lang</h4>
                     <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black mb-5">Enim ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
                   </div>
                   <div class="pb-[25px] mb-[25px]  border-b px-[25px]">
@@ -349,7 +349,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
 
           <ContentCard title="Scoring Averages" tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200 py-[25px]">
+              <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200 pt-[25px] pb-4">
                 <CircleGraph class="col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
                   :units="item.units" :value="item.value" :maxValue="item.maxValue"
                   :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
@@ -404,7 +404,7 @@ const getImageURL = (id: number, highRes?: boolean) => {
           <ContentCard title="Your Stokes Gained (SG) Breakdown Chart" tooltip="SG is a way to measure performance">
             <template #tabs>
               <NuxtLink to="#"
-                class="bg-primary py-[10px] px-[15px] font-styrene-medium font-medium text-sm leading-4 text-black rounded-[10px] hover:text-white transition-all ease-linear duration-150">
+                class="bg-primary py-[10px] px-[15px] font-styrene-medium font-medium text-sm leading-4 text-black rounded-[10px] hover:bg-primary/80 transition-all ease-linear duration-150">
                 See Full Round Details
               </NuxtLink>
             </template>

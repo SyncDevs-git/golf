@@ -31,6 +31,7 @@ module.exports = {
         'bright-gray': "#EEEEEE",
         amber: "#FFC107",
         blue: "#2196F3",
+        'sky-blue': "#dddddd",
       },
     },
     container: {

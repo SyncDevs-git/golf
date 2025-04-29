@@ -14,7 +14,7 @@ function selectTab(tab: string) {
 </script>
 
 <template>
-  <div class="flex items-center gap-[8px]">
+  <div class="flex items-center gap-x-[8px]">
     <button
       v-for="tab in tabs"
       :key="tab"
