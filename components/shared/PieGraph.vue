@@ -1,12 +1,14 @@
 <template>
-  <div class="pie-graph-container">
+  <div class="flex items-center gap-5 pt-[22px] pb-[26px]">
     <!-- Custom Legend -->
-    <div class="legend">
-      <div v-for="(header, index) in Headers" :key="index" class="legend-item">
-        <span class="legend-color" :style="{ backgroundColor: header.color }"></span>
-        <span class="legend-label">{{ header.name }}</span>
-        <span class="legend-value">{{ formatValue(header.value) }}
-          <span class="arrow"></span>
+    <div class="flex flex-row gap-[30px] basis-[69%] flex-wrap justify-between">
+      <div v-for="(header, index) in Headers" :key="index" class="flex items-center gap-2 w-auto">
+        <span class="w-[15px] h-[15px] inline-block rounded-[5px]" :style="{ backgroundColor: header.color }"></span>
+        <span class="font-styrene-medium font-medium text-sm leading-[125%]">{{ header.name }}</span>
+        <span class="w-min border border-[#ddd] rounded-[5px] py-1 px-2 relative bg-white ml-1">{{
+          formatValue(header.value) }}
+          <span
+            class="absolute top-1/2 left-[-8px] -translate-y-1/2 w-0 h-0 border-t-[5px] border-b-[5px] border-r-[7px] border-r-sky-blue border-t-transparent border-b-transparent"></span>
         </span>
       </div>
     </div>
@@ -42,20 +44,24 @@ const initChart = () => {
     }
 
     chartInstance.setOption({
+      tooltip: {
+        trigger: 'item'
+      },
       series: [
         {
+          name: 'Stokes Gained',
           type: 'pie',
-          radius: '60%', // Size of the pie chart
+          radius: '90%', // Size of the pie chart
           center: ['50%', '50%'], // Center the pie chart
           data: props.data.map((item, index) => ({
             name: item.name,
             value: Math.abs(item.value),
             itemStyle: {
-              color: props.Headers[index].color 
+              color: props.Headers[index].color
             }
           })),
           label: {
-            position: 'edge',
+            position: '',
             show: true,
             formatter: (params: any) => {
               const header = props.Headers.find(h => h.name === params.name);
@@ -65,21 +71,21 @@ const initChart = () => {
             color: '#000',
           },
           labelLine: {
-            show: false // Disable label lines since labels are inside
+            show: false
           },
           emphasis: {
-            focus: 'self', // Focus only on the hovered slice
+            // focus: 'self', 
             label: {
-              fontSize: 16, // Slightly increase label size on hover
+              fontSize: 16, 
               show: true,
             },
-            series:{
-              center: ['10%', '50%'],
+            series: {
+              center: ['50%', '50%'],
             },
             itemStyle: {
-        borderColor: '#fff',
-        borderWidth: 5
-      },
+              borderColor: '#fff',
+              borderWidth: 5
+            },
           }
         }
       ]
