@@ -267,11 +267,11 @@ const togglePlay = (index: number) => {
 }
 
 const videoSrc = [
-  { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { id: 'media2', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { id: 'media3', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { id: 'media5', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg", },
+  { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg", },
+  { id: 'media2', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg", },
+  { id: 'media3', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg", },
+  { id: 'media5', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg", },
 ]
 
 </script>
@@ -390,11 +390,10 @@ const videoSrc = [
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
                       }" :autoHeight="true" class="h-full">
-                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="!h-full">
+                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full">
                         <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden">
-                          <video :id="item.id" muted class="w-full h-full object-cover">
-                            <source :src="item.src" type="video/mp4" />
-                          </video>
+                          <img :src="item.thumb" :id="item.id" muted class="w-full h-full">
+                          </img>
                           <p v-if="isPlaying[index]"
                             class="absolute bottom-[9px] right-[9px] flex items-center justify-center gap-[3px] bg-primary rounded-[7px] py-[6px] px-2 font-styrene-medium font-medium text-[12px] text-black">
                             Playing
