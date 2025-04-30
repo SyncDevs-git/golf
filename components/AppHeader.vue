@@ -73,72 +73,63 @@ onUnmounted(() => {
 })
 </script>
 <template>
-    <nav
-      class="bg-deepForest flex items-center justify-between py-5 px-4 2xl:px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20"
-    >
-      <div class="flex items-center gap-x-2 2xl:gap-x-4">
-        <div class="logo px-2 2xl:px-[15px]">
-          <img src="/assets/images/logo.png" alt="" />
-        </div>
-        <nav>
-          <ul class="hidden lg:flex items-center">
-            <li v-for="item in navItems" :key="item.to" class="group">
-               <NuxtLink
-               :to="item.to"
-                class="flex items-center gap-x-1 2xl:gap-x-[7px] font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm py-5 xl:pt-[33px] xl:pb-[39px] px-1 xl:px-2 2xl:px-4 group-hover:bg-teritory group-hover:text-primary transition"
-                :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'"
-              >
+  <nav
+    class="bg-deepForest flex items-center justify-between py-5 px-4 2xl:px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
+    <div class="flex items-center gap-x-2 2xl:gap-x-4">
+      <div class="logo px-2 2xl:px-[15px]">
+        <img src="/assets/images/logo.png" alt="" />
+      </div>
+      <nav>
+        <ul class="hidden lg:flex items-center">
+          <li v-for="item in navItems" :key="item.to" class="group">
+            <NuxtLink :to="item.to"
+              class="flex items-center gap-x-1 2xl:gap-x-[7px] font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm py-5 xl:pt-[33px] xl:pb-[39px] px-1 xl:px-2 2xl:px-4 group-hover:bg-teritory group-hover:text-primary transition"
+              :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'">
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
-                <span>{{ item.title }}</span>
-              </NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
-  
-      <div class="flex items-center space-x-2 2xl:space-x-5">
-        <NuxtLink
-          to="item.to"
-          class="hidden lg:inline-block bg-brandGreen py-3 px-2 2xl:p-[13px] rounded-[10px] text-white font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm"
-        >
-          Sync with Arccos
-        </NuxtLink>
-        <span class="hidden lg:inline-block w-[1px] h-10 bg-white/20"></span>
-        <div class="flex items-center space-x-1 lg:space-x-[11px]">
-          <img
-            src="/assets/images/profile.png"
-            alt="User Avatar"
-            class="w-5 lg:w-10 2xl:w-12 h-5 lg:h-10 2xl:h-12 rounded-full"
-          />
-          <div class="text-sm">
-            <p class="font-playfair font-bold text-[10px] xl:text-sm 2xl:text-base text-gray-light">Hello, <span class="text-white">Smith</span> <Icon name="material-symbols:keyboard-arrow-down"
-              class="" /></p>
-            <p class="hidden lg:inline-block font-playfair font-bold text-[10px] xl:text-sm 2xl:text-base text-gray-light">smithwill@gmail.com</p>
-          </div>
-          <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="lg:hidden">
-          <Icon name="flowbite:bars-outline" class="text-white text-2xl" />
-        </button>
-        </div>
-      </div>
+              <span>{{ item.title }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-      <!-- off-canvas -->
-      <transition name="slide">
-      <div
-        v-if="isMobileMenuOpen"
-        class="fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg p-6 flex flex-col lg:hidden"
-      >
+    <div class="flex items-center space-x-2 2xl:space-x-5">
+      <NuxtLink to="item.to"
+        class="hidden lg:inline-block bg-brandGreen py-3 px-2 2xl:p-[13px] rounded-[10px] text-white font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm">
+        Sync with Arccos
+      </NuxtLink>
+      <span class="hidden lg:inline-block w-[1px] h-10 bg-white/20"></span>
+      <div class="flex items-center space-x-1 lg:space-x-[11px]">
+        <img src="/assets/images/profile.png" alt="User Avatar"
+          class="w-5 lg:w-10 2xl:w-12 h-5 lg:h-10 2xl:h-12 rounded-full" />
+        <div class="text-sm">
+          <p class="font-playfair font-bold text-xs xl:text-sm 2xl:text-base text-gray-light">Hello, <span
+              class="text-white">Smith</span>
+            <Icon name="material-symbols:keyboard-arrow-down" class="" />
+          </p>
+          <p
+            class="hidden lg:inline-block font-playfair font-bold text-[10px] xl:text-sm 2xl:text-base text-gray-light">
+            smithwill@gmail.com</p>
+        </div>
+        <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="block lg:hidden">
+          <Icon name="flowbite:bars-outline" class="text-white" />
+        </button>
+      </div>
+    </div>
+
+    <!-- off-canvas -->
+    <transition name="slide">
+      <div v-if="isMobileMenuOpen"
+        class="fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg p-6 flex flex-col lg:hidden">
         <button @click="isMobileMenuOpen = false" class="self-end mb-4">
           <Icon name="flowbite:x-outline" class="text-black text-2xl" />
         </button>
 
         <ul class="flex flex-col gap-4">
           <li v-for="item in navItems" :key="item.to">
-            <NuxtLink
-              :to="item.to"
-              @click="isMobileMenuOpen = false"
+            <NuxtLink :to="item.to" @click="isMobileMenuOpen = false"
               class="flex items-center gap-2 font-styrene-medium text-sm"
-              :class="isActive(item.to) ? 'text-primary' : 'text-gray-700'"
-            >
+              :class="isActive(item.to) ? 'text-primary' : 'text-gray-700'">
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
               <span>{{ item.title }}</span>
             </NuxtLink>
@@ -146,5 +137,5 @@ onUnmounted(() => {
         </ul>
       </div>
     </transition>
-    </nav>
-  </template>  
+  </nav>
+</template>  
