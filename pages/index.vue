@@ -236,6 +236,7 @@ const modules = ref([Navigation, Thumbs, A11y])
 const videoRefs = ref<(HTMLVideoElement | null)[]>([])
 const isPlaying = ref<boolean[]>([])
 const mainSwiper = ref()
+const currentPlayingId = ref<string | null>(null)
 
 // const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
 //   if (el instanceof HTMLVideoElement) {
@@ -281,22 +282,55 @@ const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number
   }
 }
 
+// const togglePlay = (index: number) => {
+//   videoRefs.value.forEach((video, i) => {
+//     if (video && i !== index) {
+//       video.pause()
+//     }
+//   })
+
+//   const currentVideo = videoRefs.value[index]
+//   if (currentVideo) {
+//     if (currentVideo.paused) {
+//       currentVideo.play()
+//     } else {
+//       currentVideo.pause()
+//     }
+//   }
+// }
 const togglePlay = (index: number) => {
+  const currentVideo = videoRefs.value[index]
+  if (!currentVideo) return
+
+  // Pause all other videos
   videoRefs.value.forEach((video, i) => {
-    if (video && i !== index) {
+    if (video && i !== index && !video.paused) {
       video.pause()
+      isPlaying.value[i] = false
     }
   })
 
-  const currentVideo = videoRefs.value[index]
-  if (currentVideo) {
-    if (currentVideo.paused) {
-      currentVideo.play()
-    } else {
-      currentVideo.pause()
-    }
+  // Play or pause current
+  if (currentVideo.paused) {
+    currentVideo.play()
+    currentPlayingId.value = currentVideo.id
+    isPlaying.value[index] = true
+  } else {
+    currentVideo.pause()
+    currentPlayingId.value = null
+    isPlaying.value[index] = false
   }
 }
+const onSlideChange = () => {
+  if (!currentPlayingId.value) return
+  const playingIndex = videoSrc.findIndex(v => v.id === currentPlayingId.value)
+  if (playingIndex !== -1 && videoRefs.value[playingIndex]) {
+    videoRefs.value[playingIndex]?.pause()
+    isPlaying.value[playingIndex] = false
+    currentPlayingId.value = null
+  }
+}
+
 
 const handleSlideChange = () => {
   const swiperInstance = mainSwiper.value?.swiper
@@ -407,7 +441,7 @@ const videoSrc = [
                       ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
                   </div>
                   <div class="pb-[25px] mb-[25px]  border-b px-[25px]">
-                    <swiper :thumbs="{ swiper: thumbsSwiper }" @slideChange="handleSlideChange" :modules="modules" class="w-full h-full rounded-[20px]"
+                    <swiper :thumbs="{ swiper: thumbsSwiper }" @slideChange="onSlideChange" :modules="modules" class="w-full h-full rounded-[20px]"
                       :autoHeight="true">
                       <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="w-full h-full ">
                         <div class="relative w-full  h-full">
@@ -417,10 +451,10 @@ const videoSrc = [
                             <source v-bind:src="item.src" type="video/mp4" />
                           </video>
                           <div v-if="!isPlaying[index]"
-                            class="absolute top-0 left-0 w-full h-full bg-black/10 flex justify-center items-center pointer-events-none"
+                            class="absolute top-0 left-0 w-full h-full bg-black/10 flex justify-center items-center cursor-pointer"
                             @click="() => togglePlay(index)">
                             <button
-                              class="z-10 pointer-events-auto rounded-full bg-primary w-[59px] h-[59px] flex items-center justify-center">
+                              class="z-10  rounded-full bg-primary w-[59px] h-[59px] flex items-center justify-center">
                               <Icon name="iconamoon:player-play-fill"
                                 class="text-[30px] bg-black" />
 
@@ -437,7 +471,7 @@ const videoSrc = [
                         prevEl: '.swiper-button-prev'
                       }" :autoHeight="true" class="h-full">
                       <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full">
-                        <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden">
+                        <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden cursor-pointer">
                           <img :src="item.thumb" :id="item.id" muted class="w-full h-full">
                           </img>
                           <p v-if="isPlaying[index]"
