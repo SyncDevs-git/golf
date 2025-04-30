@@ -1,17 +1,24 @@
 <template>
   <div class="rounded-[20px] pt-[41px] px-5 pb-5 bg-white sticky top-[130px]">
     <div class="flex flex-col items-center">
-      <img :src="data.img" alt="Avatar" class="w-[112px] h-[112px] rounded-full mb-[22px]" />
-      <div>
-        <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light mb-[28px]">
-          Hello, <span class="text-black">{{ data.name }}</span>
-        </h2>
-        <div class="flex items-center gap-2 w-full text-center mb-[28px]">
-          <div v-for="(item, index) in data.status" :key="index" class="xl:hidden flex items-center gap-1 py-[13px] border-t border-dashed border-gray-light ">
-            <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
-            <span class="text-base font-semibold text-gray-light">{{
-              item.points
-            }}</span>
+      <div class="flex items-center gap-4">
+        <img :src="data.img" alt="Avatar" class="w-[112px] h-[112px] rounded-full mb-[22px]" />
+        <div>
+          <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light xl:mb-[28px]">
+            Hello, <span class="text-black">{{ data.name }}</span>
+          </h2>
+          <div class="flex items-center gap-2 w-full text-center">
+            <div v-for="(item, index) in data.status" :key="index" class="xl:hidden flex items-center gap-1 py-[13px]">
+              <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
+              <span class="text-base font-semibold text-gray-light">{{
+                item.points
+              }}</span>
+               <!-- Dot after each item except the last -->
+    <span
+      v-if="index !== data.status.length - 1"
+      class="w-1 h-1 bg-gray-light rounded-full ml-2"
+    ></span>
+            </div>
           </div>
         </div>
       </div>

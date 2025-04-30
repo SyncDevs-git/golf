@@ -71,7 +71,7 @@ export default defineComponent({
             <li v-for="item in navItems" :key="item.to" class="group">
                <NuxtLink
                :to="item.to"
-                class="flex items-center gap-x-1 2xl:gap-x-[7px] font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm pt-[33px] pb-[39px] px-1 xl:px-2 2xl:px-4 group-hover:bg-teritory group-hover:text-primary transition"
+                class="flex items-center gap-x-1 2xl:gap-x-[7px] font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm py-5 xl:pt-[33px] xl:pb-[39px] px-1 xl:px-2 2xl:px-4 group-hover:bg-teritory group-hover:text-primary transition"
                 :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'"
               >
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
