@@ -470,7 +470,7 @@ const videoSrc = [
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
                       }" :autoHeight="true" class="h-full">
-                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full">
+                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full group">
                         <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden cursor-pointer">
                           <img :src="item.thumb" :id="item.id" muted class="w-full h-full">
                           </img>
@@ -493,7 +493,7 @@ const videoSrc = [
                           </p>
                         </div>
                         <div>
-                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black cursor-pointer">
+                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black cursor-pointer group-hover:opacity-60">
                             How to hit a plugged bunker shot with Brittany Lang
                           </p>
                         </div>
