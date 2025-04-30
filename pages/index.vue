@@ -250,23 +250,34 @@ const mainSwiper = ref()
 //     })
 //   }
 // }
-const setVideoRef = (
-  el: Element | ComponentPublicInstance | null,
-  index: number
-): void => {
-  const video = el instanceof HTMLVideoElement ? el : null
-  videoRefs.value[index] = video
+// const setVideoRef = (
+//   el: Element | ComponentPublicInstance | null,
+//   index: number
+// ): void => {
+//   const video = el instanceof HTMLVideoElement ? el : null
+//   videoRefs.value[index] = video
 
-  if (video) {
+//   if (video) {
+//     isPlaying.value[index] = !video.paused
+
+//     // Optional: sync state on native events
+//     video.onplay = () => {
+//       isPlaying.value[index] = true
+//     }
+//     video.onpause = () => {
+//       isPlaying.value[index] = false
+//     }
+//   }
+// }
+const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+  const video = el as HTMLVideoElement | null
+  if (video && video.tagName === 'VIDEO') {
+    videoRefs.value[index] = video
     isPlaying.value[index] = !video.paused
 
-    // Optional: sync state on native events
-    video.onplay = () => {
-      isPlaying.value[index] = true
-    }
-    video.onpause = () => {
-      isPlaying.value[index] = false
-    }
+    // Sync with native events
+    video.onplay = () => (isPlaying.value[index] = true)
+    video.onpause = () => (isPlaying.value[index] = false)
   }
 }
 
@@ -399,8 +410,8 @@ const videoSrc = [
                     <swiper :thumbs="{ swiper: thumbsSwiper }" @slideChange="handleSlideChange" :modules="modules" class="w-full h-full rounded-[20px]"
                       :autoHeight="true">
                       <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="w-full h-full ">
-                        <div class="relative w-full  h-full border">
-                          <video v-if="item.type === 'video'" :ref="el => setVideoRef(el, index)" :id="item.id" muted
+                        <div class="relative w-full  h-full">
+                          <video v-if="item.type === 'video'" :ref="(el) => setVideoRef(el as Element | null, index)" :id="item.id" muted
                             playsinline controls class="w-full h-full" @play="isPlaying[index] = true"
                             @pause="isPlaying[index] = false">
                             <source v-bind:src="item.src" type="video/mp4" />
