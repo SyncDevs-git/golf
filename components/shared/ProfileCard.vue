@@ -2,11 +2,21 @@
   <div class="rounded-[20px] pt-[41px] px-5 pb-5 bg-white sticky top-[130px]">
     <div class="flex flex-col items-center">
       <img :src="data.img" alt="Avatar" class="w-[112px] h-[112px] rounded-full mb-[22px]" />
-      <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light mb-[28px]">
-        Hello, <span class="text-black">{{ data.name }}</span>
-      </h2>
+      <div>
+        <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light mb-[28px]">
+          Hello, <span class="text-black">{{ data.name }}</span>
+        </h2>
+        <div class="flex items-center gap-2 w-full text-center mb-[28px]">
+          <div v-for="(item, index) in data.status" :key="index" class="xl:hidden flex items-center gap-1 py-[13px] border-t border-dashed border-gray-light ">
+            <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
+            <span class="text-base font-semibold text-gray-light">{{
+              item.points
+            }}</span>
+          </div>
+        </div>
+      </div>
       <div class="flex flex-col gap-2 w-full text-center mb-[28px]">
-        <div v-for="(item, index) in data.status" :key="index" class="flex items-center justify-between gap-1 py-[13px] border-t border-dashed border-gray-light">
+        <div v-for="(item, index) in data.status" :key="index" class="hidden xl:flex items-center justify-between gap-1 py-[13px] border-t border-dashed border-gray-light ">
           <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
           <span class="text-base font-semibold text-gray-light">{{
             item.points

@@ -238,38 +238,7 @@ const isPlaying = ref<boolean[]>([])
 const mainSwiper = ref()
 const currentPlayingId = ref<string | null>(null)
 
-// const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
-//   if (el instanceof HTMLVideoElement) {
-//     videoRefs.value[index] = el
-//     isPlaying.value[index] = !el.paused
 
-//     el.addEventListener('play', () => {
-//       isPlaying.value[index] = true
-//     })
-//     el.addEventListener('pause', () => {
-//       isPlaying.value[index] = false
-//     })
-//   }
-// }
-// const setVideoRef = (
-//   el: Element | ComponentPublicInstance | null,
-//   index: number
-// ): void => {
-//   const video = el instanceof HTMLVideoElement ? el : null
-//   videoRefs.value[index] = video
-
-//   if (video) {
-//     isPlaying.value[index] = !video.paused
-
-//     // Optional: sync state on native events
-//     video.onplay = () => {
-//       isPlaying.value[index] = true
-//     }
-//     video.onpause = () => {
-//       isPlaying.value[index] = false
-//     }
-//   }
-// }
 const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
   const video = el as HTMLVideoElement | null
   if (video && video.tagName === 'VIDEO') {
@@ -282,22 +251,6 @@ const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number
   }
 }
 
-// const togglePlay = (index: number) => {
-//   videoRefs.value.forEach((video, i) => {
-//     if (video && i !== index) {
-//       video.pause()
-//     }
-//   })
-
-//   const currentVideo = videoRefs.value[index]
-//   if (currentVideo) {
-//     if (currentVideo.paused) {
-//       currentVideo.play()
-//     } else {
-//       currentVideo.pause()
-//     }
-//   }
-// }
 const togglePlay = (index: number) => {
   const currentVideo = videoRefs.value[index]
   if (!currentVideo) return
@@ -358,10 +311,10 @@ const videoSrc = [
 <template>
   <div class="container">
     <div class="grid grid-cols-12 gap-[30px]">
-      <div class="col-span-3">
+      <div class="col-span-12 lg:col-span-3">
         <ProfileCard :data="profileData" />
       </div>
-      <div class="col-span-9">
+      <div class="col-span-12 lg:col-span-9">
         <!-- Header: Tabs -->
         <div class="flex gap-2 bg-white rounded-[15px] p-[15px]">
           <ContainerCard :tabs="tabs" v-model="activeTab" />
@@ -470,7 +423,7 @@ const videoSrc = [
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
                       }" :autoHeight="true" class="h-full">
-                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full group cursor-pointer">
+                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full hover:opacity-60 transition-all duration-200 ease-linear cursor-pointer">
                         <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden">
                           <img :src="item.thumb" :id="item.id" muted class="w-full h-full">
                           </img>
@@ -493,7 +446,7 @@ const videoSrc = [
                           </p>
                         </div>
                         <div>
-                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black  group-hover:opacity-50">
+                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black">
                             How to hit a plugged bunker shot with Brittany Lang
                           </p>
                         </div>

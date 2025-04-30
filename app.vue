@@ -2,6 +2,6 @@
     <div class="bg-[#e7eaea]">
         <AppHeader />
         <NuxtPage />
-        <AppFooter />
+        <!-- <AppFooter /> -->
     </div>
 </template>

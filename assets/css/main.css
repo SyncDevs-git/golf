@@ -26,6 +26,9 @@
     src: url(/assets/fonts/styrene/StyreneAWeb-Bold.woff2) format('woff2');
   }
 }
+nav svg{
+  @apply w-[10px] 2xl:w-[18px];
+}
 
 nav .nav-active svg path{
   @apply fill-primary;

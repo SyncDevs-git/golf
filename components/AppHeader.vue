@@ -60,10 +60,10 @@ export default defineComponent({
 </script>
 <template>
     <nav
-      class="bg-deepForest flex items-center justify-between pl-10 pr-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0  z-10"
+      class="bg-deepForest flex items-center justify-between px-4 2xl:px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20"
     >
-      <div class="flex items-center gap-x-4">
-        <div class="logo pr-[26px]">
+      <div class="flex items-center gap-x-2 2xl:gap-x-4">
+        <div class="logo px-2 2xl:px-[15px]">
           <img src="/assets/images/logo.png" alt="" />
         </div>
         <nav>
@@ -71,7 +71,7 @@ export default defineComponent({
             <li v-for="item in navItems" :key="item.to" class="group">
                <NuxtLink
                :to="item.to"
-                class="flex items-center gap-x-[7px] font-styrene-medium text-sm pt-[33px] pb-[39px] px-4 group-hover:bg-teritory group-hover:text-primary transition"
+                class="flex items-center gap-x-1 2xl:gap-x-[7px] font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm pt-[33px] pb-[39px] px-1 xl:px-2 2xl:px-4 group-hover:bg-teritory group-hover:text-primary transition"
                 :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'"
               >
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
@@ -82,10 +82,10 @@ export default defineComponent({
         </nav>
       </div>
   
-      <div class="flex items-center space-x-[20px]">
+      <div class="flex items-center space-x-2 2xl:space-x-5">
         <NuxtLink
           to="item.to"
-          class="bg-brandGreen p-[13px] rounded-[10px] text-white font-styrene-medium text-sm"
+          class="bg-brandGreen py-3 px-2 2xl:p-[13px] rounded-[10px] text-white font-styrene-medium text-[10px] xl:text-xs 2xl:text-sm"
         >
           Sync with Arccos
         </NuxtLink>
@@ -94,11 +94,11 @@ export default defineComponent({
           <img
             src="/assets/images/profile.png"
             alt="User Avatar"
-            class="w-12 h-12 rounded-full"
+            class="w-10 2xl:w-12 h-10 2xl:h-12 rounded-full"
           />
           <div class="text-sm">
-            <p class="font-playfair font-bold text-base text-gray-light">Hello, <span class="text-white">Smith</span></p>
-            <p class="font-playfair font-bold text-base text-gray-light">smithwill@gmail.com</p>
+            <p class="font-playfair font-bold text-[10px] xl:text-sm 2xl:text-base text-gray-light">Hello, <span class="text-white">Smith</span></p>
+            <p class="font-playfair font-bold text-[10px] xl:text-sm 2xl:text-base text-gray-light">smithwill@gmail.com</p>
           </div>
         </div>
       </div>
