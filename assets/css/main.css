@@ -53,18 +53,21 @@ nav li a:hover svg path{
   color: #721e2e;
   font-weight: bold;
 }
-.swiper-custom-next,
-.swiper-custom-prev {
-  position: absolute;
-  top: 35%;
-  z-index: 10;
-  background: white;
-  padding: 10px;
-  cursor: pointer;
+
+/* Example CSS */
+.custom-prev, .custom-next {
+  @apply !top-1/2 -translate-y-1/2 !w-[33px] !h-[33px] bg-primary rounded-full;
 }
-.swiper-custom-next {
-  right: 0;
+.custom-prev.swiper-button-disabled, .custom-next.swiper-button-disabled {
+  @apply  bg-white;
 }
-.swiper-custom-prev {
-  left: 0;
+.custom-prev::after, .custom-next::after{
+  @apply text-black !text-sm
+}
+.custom-prev {
+  @apply !left-2;
+}
+
+.custom-next {
+  @apply !right-2;
 }
