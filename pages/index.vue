@@ -493,7 +493,7 @@ const videoSrc = [
                           </p>
                         </div>
                         <div>
-                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black">
+                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black cursor-pointer">
                             How to hit a plugged bunker shot with Brittany Lang
                           </p>
                         </div>
