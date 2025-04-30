@@ -3,7 +3,7 @@ import LineGraph from "@/components/shared/LineGraph.vue";
 import PieGraph from "@/components/shared/PieGraph.vue";
 import redFlag from '~/assets/images/red-flag.svg'
 import profileImg from '~/assets/images/profile-2.png'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, type ComponentPublicInstance } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
@@ -235,21 +235,44 @@ const modules = ref([Navigation, Thumbs, A11y])
 
 const videoRefs = ref<(HTMLVideoElement | null)[]>([])
 const isPlaying = ref<boolean[]>([])
+const mainSwiper = ref()
 
+// const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+//   if (el instanceof HTMLVideoElement) {
+//     videoRefs.value[index] = el
+//     isPlaying.value[index] = !el.paused
 
-const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
-  if (el instanceof HTMLVideoElement) {
-    videoRefs.value[index] = el
-    isPlaying.value[index] = !el.paused
-  } else {
-    videoRefs.value[index] = null
+//     el.addEventListener('play', () => {
+//       isPlaying.value[index] = true
+//     })
+//     el.addEventListener('pause', () => {
+//       isPlaying.value[index] = false
+//     })
+//   }
+// }
+const setVideoRef = (
+  el: Element | ComponentPublicInstance | null,
+  index: number
+): void => {
+  const video = el instanceof HTMLVideoElement ? el : null
+  videoRefs.value[index] = video
+
+  if (video) {
+    isPlaying.value[index] = !video.paused
+
+    // Optional: sync state on native events
+    video.onplay = () => {
+      isPlaying.value[index] = true
+    }
+    video.onpause = () => {
+      isPlaying.value[index] = false
+    }
   }
 }
 
-
 const togglePlay = (index: number) => {
   videoRefs.value.forEach((video, i) => {
-    if (video && i !== index && !video.paused) {
+    if (video && i !== index) {
       video.pause()
     }
   })
@@ -258,20 +281,31 @@ const togglePlay = (index: number) => {
   if (currentVideo) {
     if (currentVideo.paused) {
       currentVideo.play()
-      isPlaying.value[index] = true
     } else {
       currentVideo.pause()
-      isPlaying.value[index] = false
     }
   }
+}
+
+const handleSlideChange = () => {
+  const swiperInstance = mainSwiper.value?.swiper
+  if (!swiperInstance) return
+
+  const activeIndex = swiperInstance.activeIndex
+
+  videoRefs.value.forEach((video, i) => {
+    if (video && i !== activeIndex && !video.paused) {
+      video.pause()
+    }
+  })
 }
 
 const videoSrc = [
   { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg", },
   { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg", },
-  { id: 'media2', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg", },
-  { id: 'media3', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg", },
-  { id: 'media5', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',"thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg", },
+  { id: 'media2', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg", },
+  { id: 'media3', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg", },
+  { id: 'media5', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg", },
 ]
 
 </script>
@@ -362,21 +396,22 @@ const videoSrc = [
                       ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
                   </div>
                   <div class="pb-[25px] mb-[25px]  border-b px-[25px]">
-                    <swiper :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="w-full h-full rounded-[20px]"
+                    <swiper :thumbs="{ swiper: thumbsSwiper }" @slideChange="handleSlideChange" :modules="modules" class="w-full h-full rounded-[20px]"
                       :autoHeight="true">
                       <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="w-full h-full ">
                         <div class="relative w-full  h-full border">
                           <video v-if="item.type === 'video'" :ref="el => setVideoRef(el, index)" :id="item.id" muted
-                            playsinline class="w-full h-full">
+                            playsinline controls class="w-full h-full" @play="isPlaying[index] = true"
+                            @pause="isPlaying[index] = false">
                             <source v-bind:src="item.src" type="video/mp4" />
                           </video>
-                          <div
+                          <div v-if="!isPlaying[index]"
                             class="absolute top-0 left-0 w-full h-full bg-black/10 flex justify-center items-center pointer-events-none"
-                            v-if="item.type == 'video'">
-                            <button class="z-10 pointer-events-auto rounded-full bg-primary w-[59px] h-[59px] flex items-center justify-center"
-                              @click="() => togglePlay(index)">
-                              <Icon v-if="isPlaying[index]" name="iconamoon:player-pause-fill" class="text-[30px] bg-black"/>
-                              <Icon v-else name="iconamoon:player-play-fill" class="text-[30px] bg-black"/>
+                            @click="() => togglePlay(index)">
+                            <button
+                              class="z-10 pointer-events-auto rounded-full bg-primary w-[59px] h-[59px] flex items-center justify-center">
+                              <Icon name="iconamoon:player-play-fill"
+                                class="text-[30px] bg-black" />
 
                             </button>
                           </div>
@@ -413,7 +448,7 @@ const videoSrc = [
                           </p>
                         </div>
                         <div>
-                          <p class="font-playfair font-extrabold text-[17px] leading-[153%] text-black">
+                          <p class="font-playfair font-extrabold text-[22px] leading-[125%] text-black">
                             How to hit a plugged bunker shot with Brittany Lang
                           </p>
                         </div>
