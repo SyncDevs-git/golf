@@ -417,11 +417,11 @@ const getImageURL = (id: number, highRes?: boolean) => {
               <div class="border-t px-[25px] py-5">
                 <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
                   <div class="max-w-[588px] mx-auto">
-                    <ul class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center gap-[21px] list-disc">
-                      <li class="list-none">Meriwether National GC - West</li> 
-                      <li>11/06/2024</li> 
-                      <li>Score: 45</li> 
-                      <li>@ 15 HCP</li>
+                    <ul class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center gap-[21px]">
+                      <li class="">Meriwether National GC - West</li> 
+                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">11/06/2024</li> 
+                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">Score: 45</li> 
+                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">@ 15 HCP</li>
                     </ul>
                   </div>
                 </div>
