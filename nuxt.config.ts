@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true
   },
+
   components: [
     {
       path: '~/components',
@@ -11,6 +12,7 @@ export default defineNuxtConfig({
       extensions: ['.vue'],
     },
   ],
+
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
@@ -22,4 +24,5 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-04-11',
+  modules: ['@nuxt/icon'],
 })

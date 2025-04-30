@@ -3,18 +3,16 @@ import LineGraph from "@/components/shared/LineGraph.vue";
 import PieGraph from "@/components/shared/PieGraph.vue";
 import redFlag from '~/assets/images/red-flag.svg'
 import profileImg from '~/assets/images/profile-2.png'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 // Import Swiper styles
 import 'swiper/css'
-
-import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 // import required modules
-import { FreeMode, Navigation, Thumbs, A11y } from 'swiper/modules'
+import { Navigation, Thumbs, A11y } from 'swiper/modules'
 
 // Tabs
 const tabs = [
@@ -227,19 +225,55 @@ const profileData = {
   mainValue: "-2.0"
 }
 
-const thumbsSwiper = ref()
+const thumbsSwiper = ref(null)
 
 const setThumbsSwiper = (swiper: any) => {
   thumbsSwiper.value = swiper
 }
 
-const modules = ref([FreeMode, Navigation, Thumbs, A11y])
+const modules = ref([Navigation, Thumbs, A11y])
 
-const getImageURL = (id: number, highRes?: boolean) => {
-  const resolution = highRes ? '800/600' : '200/100'
+const videoRefs = ref<(HTMLVideoElement | null)[]>([])
+const isPlaying = ref<boolean[]>([])
 
-  return `https://picsum.photos/id/${110 + id}/${resolution}`
+
+const setVideoRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+  if (el instanceof HTMLVideoElement) {
+    videoRefs.value[index] = el
+    isPlaying.value[index] = !el.paused
+  } else {
+    videoRefs.value[index] = null
+  }
 }
+
+
+const togglePlay = (index: number) => {
+  videoRefs.value.forEach((video, i) => {
+    if (video && i !== index && !video.paused) {
+      video.pause()
+    }
+  })
+
+  const currentVideo = videoRefs.value[index]
+  if (currentVideo) {
+    if (currentVideo.paused) {
+      currentVideo.play()
+      isPlaying.value[index] = true
+    } else {
+      currentVideo.pause()
+      isPlaying.value[index] = false
+    }
+  }
+}
+
+const videoSrc = [
+  { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { id: 'media2', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { id: 'media3', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+  { id: 'media5', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+]
+
 </script>
 
 <template>
@@ -322,25 +356,75 @@ const getImageURL = (id: number, highRes?: boolean) => {
               <div class="grid grid-cols-12 gap-4 pt-[25px] pb-[29px]">
                 <div class="col-span-12">
                   <div class="px-[25px]">
-                    <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black mb-[10px]">How to hit a plugged bunker shot with Brittany Lang</h4>
-                    <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black mb-5">Enim ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
+                    <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black mb-[10px]">How to hit
+                      a plugged bunker shot with Brittany Lang</h4>
+                    <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black mb-5">Enim
+                      ridiculus nullam varius semper. Nisl quis ornare sit Enim ridiculus nullam variu</p>
                   </div>
                   <div class="pb-[25px] mb-[25px]  border-b px-[25px]">
-                    <swiper :spaceBetween="10" :navigation="false" :thumbs="{ swiper: thumbsSwiper }" :modules="modules"
-                      class="rounded-[20px]">
-                      <swiper-slide v-for="i in 10" class="">
-                        <img :src="getImageURL(i, true)" class="w-full"/>
+                    <swiper :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="w-full h-full rounded-[20px]"
+                      :autoHeight="true">
+                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="w-full h-full ">
+                        <div class="relative w-full  h-full border">
+                          <video v-if="item.type === 'video'" :ref="el => setVideoRef(el, index)" :id="item.id" muted
+                            playsinline class="w-full h-full">
+                            <source v-bind:src="item.src" type="video/mp4" />
+                          </video>
+                          <div
+                            class="absolute top-0 left-0 w-full h-full bg-black/10 flex justify-center items-center pointer-events-none"
+                            v-if="item.type == 'video'">
+                            <button class="z-10 pointer-events-auto rounded-full bg-primary w-[59px] h-[59px] flex items-center justify-center"
+                              @click="() => togglePlay(index)">
+                              <Icon v-if="isPlaying[index]" name="iconamoon:player-pause-fill" class="text-[30px] bg-black"/>
+                              <Icon v-else name="iconamoon:player-play-fill" class="text-[30px] bg-black"/>
+
+                            </button>
+                          </div>
+                        </div>
                       </swiper-slide>
                     </swiper>
                   </div>
-                  <div class="px-[25px]">
-                    <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="2.8" :navigation="false" :watchSlidesProgress="true"
-                      :grabCursor="true" :modules="modules" >
-                      <swiper-slide v-for="i in 10">
-                        <img :src="getImageURL(i)" class="w-full rounded-[15px] mb-[10px]"/>
-                        <p class="font-playfair font-extrabold text-[17px] leading-[153%] text-black">How to hit a plugged bunker shot with Brittany Lang</p>
+                  <div class="px-[25px] relative">
+                    <swiper @swiper="setThumbsSwiper" :spaceBetween="20" :slidesPerView="2.8" :modules="modules"
+                      :navigation="{
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                      }" :autoHeight="true" class="h-full">
+                      <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="!h-full">
+                        <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden">
+                          <video :id="item.id" muted class="w-full h-full object-cover">
+                            <source :src="item.src" type="video/mp4" />
+                          </video>
+                          <p v-if="isPlaying[index]"
+                            class="absolute bottom-[9px] right-[9px] flex items-center justify-center gap-[3px] bg-primary rounded-[7px] py-[6px] px-2 font-styrene-medium font-medium text-[12px] text-black">
+                            Playing
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_548_423)">
+                                <path
+                                  d="M6.5 0C2.91568 0 0 2.91596 0 6.5C0 10.084 2.91568 13 6.5 13C10.0843 13 13 10.084 13 6.5C13 2.91596 10.0843 0 6.5 0ZM9.08403 6.72773L5.29237 9.16523C5.24794 9.19405 5.19662 9.20834 5.14584 9.20834C5.10141 9.20834 5.05644 9.19722 5.01625 9.17528C4.92896 9.12768 4.875 9.03668 4.875 8.9375V4.0625C4.875 3.96332 4.92896 3.87232 5.01625 3.82472C5.10194 3.77764 5.20932 3.78054 5.29237 3.83477L9.08403 6.27227C9.16127 6.32199 9.20834 6.40796 9.20834 6.5C9.20834 6.59204 9.16127 6.67799 9.08403 6.72773Z"
+                                  fill="black" />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_548_423">
+                                  <rect width="13" height="13" fill="white" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </p>
+                        </div>
+                        <div>
+                          <p class="font-playfair font-extrabold text-[17px] leading-[153%] text-black">
+                            How to hit a plugged bunker shot with Brittany Lang
+                          </p>
+                        </div>
                       </swiper-slide>
+                      <!-- slider arrows -->
                     </swiper>
+                    <div class="swiper-button-prev custom-prev">
+                    </div>
+                    <div class="swiper-button-next custom-next">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -417,11 +501,18 @@ const getImageURL = (id: number, highRes?: boolean) => {
               <div class="border-t px-[25px] py-5">
                 <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
                   <div class="max-w-[588px] mx-auto">
-                    <ul class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center gap-[21px]">
-                      <li class="">Meriwether National GC - West</li> 
-                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">11/06/2024</li> 
-                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">Score: 45</li> 
-                      <li class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">@ 15 HCP</li>
+                    <ul
+                      class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center gap-[21px]">
+                      <li class="">Meriwether National GC - West</li>
+                      <li
+                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        11/06/2024</li>
+                      <li
+                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        Score: 45</li>
+                      <li
+                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        @ 15 HCP</li>
                     </ul>
                   </div>
                 </div>
