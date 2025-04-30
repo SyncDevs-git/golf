@@ -324,8 +324,8 @@ const videoSrc = [
             <template #body>
               <div class="py-[30px] px-[25px]">
                 <LineGraph />
-                <div class="grid grid-cols-12 divide-x divide-slate-200">
-                  <CircleGraph class="col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
+                <div class="grid grid-cols-12 lg:divide-x divide-slate-200">
+                  <CircleGraph class="col-span-6 lg:col-span-3" v-for="(item, index) in graphsData1" :key="index" :title="item.title"
                     :value="item.value" :maxValue="item.maxValue" :units="item.units"
                     :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
                 </div>
@@ -422,7 +422,27 @@ const videoSrc = [
                       :navigation="{
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
-                      }" :autoHeight="true" class="h-full">
+                      }"
+                       :autoHeight="true"
+                        class="h-full"
+                        :breakpoints="{
+    320: {
+      slidesPerView: 1, // 1 slide per view on mobile
+      spaceBetween: 10, // Adjust space between slides for mobile
+    },
+    480: {
+      slidesPerView: 1.5, // 1.5 slides per view on small screens
+      spaceBetween: 15,
+    },
+    768: {
+      slidesPerView: 2, // 2 slides per view on tablets
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 2.8, // 2.8 slides per view on larger screens
+      spaceBetween: 20,
+    }
+  }">
                       <swiper-slide v-for="(item, index) in videoSrc" :key="item.id" class="h-full hover:opacity-60 transition-all duration-200 ease-linear cursor-pointer">
                         <div class="relative w-full h-full rounded-[15px] mb-[10px] overflow-hidden">
                           <img :src="item.thumb" :id="item.id" muted class="w-full h-full">
@@ -466,7 +486,7 @@ const videoSrc = [
           <ContentCard title="Scoring Averages" tooltip="SG is a way to measure performance">
             <template #body>
               <div class="grid grid-cols-12 gap-4 divide-x divide-slate-200 pt-[25px] pb-4">
-                <CircleGraph class="col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
+                <CircleGraph class="col-span-12 md:col-span-4" v-for="(item, index) in graphsData" :key="index" :title="item.title"
                   :units="item.units" :value="item.value" :maxValue="item.maxValue"
                   :unitsAsSubtitle="item.unitsAsSubtitle" :mode="item.mode" />
               </div>
@@ -491,7 +511,7 @@ const videoSrc = [
           <ContentCard title="Scoring Breakdown" tooltip="SG is a way to measure performance">
             <template #body>
               <div class="grid grid-cols-12 gap-4 p-[25px]">
-                <div class="col-span-6 border rounded-[20px] py-[30px] px-[25px]"
+                <div class="col-span-12 lg:col-span-6 border rounded-[20px] py-[30px] px-[25px]"
                   v-for="(card, index) in scoringBreakdownData">
                   <StartEndDisplay :key="index" :title="card.title" :startValue="card.startValue"
                     :endValue="card.endValue" :mode="card.mode" />
@@ -534,16 +554,19 @@ const videoSrc = [
                 <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
                   <div class="max-w-[588px] mx-auto">
                     <ul
-                      class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center gap-[21px]">
+                      class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center justify-center gap-[21px] flex-wrap lg:flex-nowrap">
                       <li class="">Meriwether National GC - West</li>
+                      <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
                       <li
-                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        class="">
                         11/06/2024</li>
+                        <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
                       <li
-                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        class="">
                         Score: 45</li>
+                        <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
                       <li
-                        class="relative after:absolute after:top-1/2 after:-left-[13px] after:-translate-y-1/2 after:w-[5px] after:h-[5px] after:bg-black after:rounded-full after:content-['']">
+                        class="">
                         @ 15 HCP</li>
                     </ul>
                   </div>

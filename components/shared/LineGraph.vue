@@ -15,10 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import * as echarts from 'echarts'
 
 const chartRef = ref<HTMLDivElement | null>(null);
+const chartInstance = ref<echarts.ECharts | null>(null)
+
 
 // Generate a sinusoidal wave pattern with gaps at the start and end
 const numPoints = 52;
@@ -30,11 +32,16 @@ const electricityData = Array.from({ length: numPoints }, (_, i) => {
   return 20 * Math.sin(((i - 1) / (numPoints - 3)) * 4 * Math.PI);
 });
 
+const handleResize = () => {
+  chartInstance.value?.resize()
+}
+
 onMounted(() => {
   if (chartRef.value) {
+    chartInstance.value = echarts.init(chartRef.value)
     const chart = echarts.init(chartRef.value);
 
-    chart.setOption({
+    chartInstance.value.setOption({
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -83,6 +90,11 @@ onMounted(() => {
         }
       ]
     });
+    window.addEventListener('resize', handleResize)
   }
 });
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>

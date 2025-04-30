@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between py-[22px]">
+  <div class="flex items-center justify-between py-[22px] flex-wrap gap-4">
     <!-- Index -->
     <div class="flex items-center justify-start gap-4 ">
       <div class="flex items-center justify-center w-12 h-12 border-[2px] border-black/[8%] rounded-full font-styrene-bold font-bold text-xl leading-5 text-black">

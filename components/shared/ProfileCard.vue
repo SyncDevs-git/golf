@@ -2,32 +2,32 @@
   <div class="rounded-[20px] pt-[41px] px-5 pb-5 bg-white sticky top-[130px]">
     <div class="flex flex-col items-center">
       <div class="flex items-center gap-4">
-        <img :src="data.img" alt="Avatar" class="w-[112px] h-[112px] rounded-full mb-[22px]" />
-        <div>
+        <img :src="data.img" alt="Avatar" class="w-14 lg:w-[112px] h-w-14 lg:h-[112px] rounded-full lg:mb-[22px]" />
+        <div class="">
           <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light xl:mb-[28px]">
             Hello, <span class="text-black">{{ data.name }}</span>
           </h2>
-          <div class="flex items-center gap-2 w-full text-center">
-            <div v-for="(item, index) in data.status" :key="index" class="xl:hidden flex items-center gap-1 py-[13px]">
-              <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
-              <span class="text-base font-semibold text-gray-light">{{
+          <div class="flex items-center gap-2 flex-wrap w-full text-center">
+            <div v-for="(item, index) in data.status" :key="index" class="xl:hidden flex items-center gap-2">
+              <span class="font-styrene-medium font-medium text-[12px] leading-[20px] text-gray-light">{{ item.name
+                }}</span>
+              <span class="text-[12px] font-semibold text-gray-light">{{
                 item.points
-              }}</span>
-               <!-- Dot after each item except the last -->
-    <span
-      v-if="index !== data.status.length - 1"
-      class="w-1 h-1 bg-gray-light rounded-full ml-2"
-    ></span>
+                }}</span>
+              <!-- Dot after each item except the last -->
+              <span v-if="index !== data.status.length - 1" class="w-1 h-1 bg-gray-light rounded-full"></span>
             </div>
           </div>
         </div>
       </div>
       <div class="flex flex-col gap-2 w-full text-center mb-[28px]">
-        <div v-for="(item, index) in data.status" :key="index" class="hidden xl:flex items-center justify-between gap-1 py-[13px] border-t border-dashed border-gray-light ">
-          <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name }}</span>
+        <div v-for="(item, index) in data.status" :key="index"
+          class="hidden xl:flex items-center justify-between gap-1 py-[13px] border-t border-dashed border-gray-light ">
+          <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">{{ item.name
+            }}</span>
           <span class="text-base font-semibold text-gray-light">{{
             item.points
-          }}</span>
+            }}</span>
         </div>
       </div>
       <div class="border-[2px] border-[rgba(0,0,0,0.08)] rounded-xl w-full">
@@ -37,7 +37,8 @@
               class="bg-black rounded-xl font-styrene-bold font-bold text-[26px] leading-[100%] text-white px-[12px] py-[15px]">
               {{ data.mainValue }}</p>
             <div class="delta-section">
-              <span class="delta flex items-center justify-start text-red font-styrene-bold text-lg leading-[100%] mb-[10px]"
+              <span
+                class="delta flex items-center justify-start text-red font-styrene-bold text-lg leading-[100%] mb-[10px]"
                 :class="{ negative: delta < 0, positive: delta > 0 }">
                 {{ formattedDelta }}
                 <span class="rotate-0">
@@ -57,7 +58,8 @@
           </p>
         </div>
 
-        <NuxtLink href="#" class="border-t-[2px] border-black/[10%] py-[14px] px-[17px] font-styrene-medium font-medium text-[12px] leading-[20px] text-black flex items-center justify-center">
+        <NuxtLink href="#"
+          class="border-t-[2px] border-black/[10%] py-[14px] px-[17px] font-styrene-medium font-medium text-[12px] leading-[20px] text-black flex items-center justify-center">
           Show Handicap Breakdown
           <span>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

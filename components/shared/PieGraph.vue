@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center gap-5 pt-[22px] pb-[26px]">
+  <div class="flex items-center gap-5 pt-[22px] pb-[26px] flex-wrap lg:flex-nowrap">
     <!-- Custom Legend -->
-    <div class="flex flex-row gap-[30px] basis-[69%] flex-wrap justify-between">
+    <div class="flex flex-row gap-[30px] basis-full lg:basis-[69%] flex-wrap justify-between">
       <div v-for="(header, index) in Headers" :key="index" class="flex items-center gap-2 w-auto">
         <span class="w-[15px] h-[15px] inline-block rounded-[5px]" :style="{ backgroundColor: header.color }"></span>
         <span class="font-styrene-medium font-medium text-sm leading-[125%]">{{ header.name }}</span>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- Pie Chart -->
-    <div ref="chartRef" class="chart"></div>
+    <div ref="chartRef" class="chart w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px]"></div>
   </div>
 </template>
 
@@ -94,18 +94,39 @@ const initChart = () => {
   }
 };
 
+// Resize chart on window resize
+const resizeChart = () => {
+  chartInstance?.resize()
+}
+
+// Optional ResizeObserver for container resize
+let observer: ResizeObserver | null = null
+
 // Watch for changes in data or Headers to update the chart
 const props = defineProps<{
   data: any[];
   Headers: PieChartHeader[];
 }>();
 
-watch([() => props.data, () => props.Headers], () => {
-  initChart();
-});
-
-// Initialize the chart on mount
 onMounted(() => {
-  initChart();
-});
+  initChart()
+  window.addEventListener('resize', resizeChart)
+
+  if (chartRef.value) {
+    observer = new ResizeObserver(() => {
+      chartInstance?.resize()
+    })
+    observer.observe(chartRef.value)
+  }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeChart)
+  observer?.disconnect()
+})
+
+// Re-initialize chart if props change
+watch([() => props.data, () => props.Headers], () => {
+  initChart()
+})
 </script>
