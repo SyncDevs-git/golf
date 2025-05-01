@@ -554,7 +554,7 @@ const videoSrc = [
             </template>
             <template #footer>
               <div class="border-t px-[25px] py-5">
-                <div class="bg-sonfSliver py-[23px] max-lg:px-4 rounded-[10px] text-center max-w-max mx-auto">
+                <div class="bg-sonfSliver py-[23px] max-lg:px-4 rounded-[10px] text-center w-full">
                     <ul
                       class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center justify-center gap-[21px] max-lg:flex-wrap">
                       <li class="">Meriwether National GC - West</li>
