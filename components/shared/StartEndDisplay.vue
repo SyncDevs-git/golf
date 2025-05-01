@@ -1,5 +1,5 @@
 <template>
-  <div class="flex item-center justify-between border-b border-dashed border-[#aaa] pb-[25px] mb-[25px]">
+  <div class="flex item-center justify-between max-sm:flex-col border-b border-dashed border-[#aaa] pb-[25px] mb-[25px]">
     <h4 class="font-playfair font-extrabold text-lg leading-[3rem] text-black">{{ title }}</h4>
     <div class="flex justify-between items-center gap-[29px]">
       <span class="font-styrene-bold font-bold text-[26px] leading-[100%] text-black">{{ startValue }} <span class="block font-styrene-medium font-medium text-[15px] leading-5 text-gray-light pt-3">Starting</span></span>
