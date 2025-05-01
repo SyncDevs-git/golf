@@ -74,7 +74,7 @@ onUnmounted(() => {
 </script>
 <template>
   <nav
-    class="bg-deepForest flex items-center justify-between max-lg:py-5 max-lg:px-3 px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
+    class="bg-deepForest flex items-center justify-between max-lg:py-5 max-lg:px-3 px-[25px] border-t-[8px] border-teritory mb-[30px] max-md:fixed sticky top-0 w-full z-20">
     <div class="flex items-center max-lg:gap-x-3 gap-x-4">
       <div class="logo">
         <img src="/assets/images/logo.png" alt="" class="w-full h-full min-w-[60px]"/>
