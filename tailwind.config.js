@@ -43,13 +43,20 @@ module.exports = {
         xl: '16px',
         '2xl': '16px',
       },
-      screens: {
-        sm: '600px',
-        md: '728px',
-        lg: '996px',
-        xl: '1170px',
-        '2xl': '1400px',
-      },
+      // screens: {
+      //   sm: '600px',
+      //   md: '728px',
+      //   lg: '991px',
+      //   xl: '1170px',
+      //   '2xl': '1400px',
+      // },
+    },
+    screens: {
+      sm: '600px',
+      md: '728px',
+      lg: '991px',
+      xl: '1170px',
+      '2xl': '1400px',
     },
   },
 
