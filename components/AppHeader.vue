@@ -95,7 +95,7 @@ onUnmounted(() => {
 
     <div class="flex items-center max-lg:space-x-2 max-xl:space-x-4 space-x-5">
       <NuxtLink to="item.to"
-        class="max-lg:hidden inline-block bg-brandGreen max-lg:py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs max-xl:text-[13px] text-sm max-xl:whitespace-pre-wrap whitespace-nowrap">
+        class="max-lg:fixed bottom-0 max-lg:w-full left-0 text-center max-lg:rounded-none bg-brandGreen max-lg:py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs max-xl:text-[13px] text-sm max-xl:whitespace-pre-wrap whitespace-nowrap">
         Sync with Arccos
       </NuxtLink>
       <span class="max-lg:hidden inline-block w-[1px] h-10 bg-white/20"></span>
@@ -140,10 +140,6 @@ onUnmounted(() => {
             </NuxtLink>
           </li>
         </ul>
-        <NuxtLink to="item.to"
-        class="bg-brandGreen max-lg:py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs max-xl:text-[13px] text-sm max-xl:whitespace-pre-wrap whitespace-nowrap mt-4 text-center">
-        Sync with Arccos
-      </NuxtLink>
       </div>
     </transition>
   </nav>
