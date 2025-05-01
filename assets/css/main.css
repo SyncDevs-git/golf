@@ -63,6 +63,10 @@ nav li a:hover svg path{
   .email {
     display: none;
   }
+  .nav svg {
+    width: 22px;
+    height: auto;
+  }
 }
 
 .chart {
