@@ -313,7 +313,7 @@ const videoSrc = [
 
 <template>
   <div class="container">
-    <div class="grid grid-cols-12 max-md:gap-y-[30px] max-md:gap-x-0 gap-[30px]">
+    <div class="grid grid-cols-12 max-md:gap-y-[20px] max-md:gap-x-0 gap-[30px]">
       <div class="max-lg:col-span-12 col-span-3">
         <ProfileCard :data="profileData" />
       </div>
