@@ -30,6 +30,10 @@ nav svg{
   @apply max-lg:w-[10px] max-xl:w-[14px] w-[18px];
 }
 
+nav a svg path{
+  @apply fill-gray-500;
+  fill-opacity: 1; 
+}
 nav .nav-active svg path{
   @apply fill-primary;
   fill-opacity: 1; 
@@ -53,6 +57,12 @@ nav li a:hover svg path{
 }
 .slide-leave-to {
   transform: translateX(-100%);
+}
+
+@media (max-width: 1300px) {
+  .email {
+    display: none;
+  }
 }
 
 .chart {

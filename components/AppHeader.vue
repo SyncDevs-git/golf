@@ -109,7 +109,7 @@ onUnmounted(() => {
               <Icon name="material-symbols:keyboard-arrow-down" class="" />
             </p>
             <p
-              class="max-2xl:hidden inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
+              class="email inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
               smithwill@gmail.com</p>
           </div>
         </div>
