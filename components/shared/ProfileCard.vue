@@ -1,17 +1,17 @@
 <template>
   <div class="rounded-[20px] pt-[41px] px-5 pb-5 bg-white sticky top-[130px] -translate-y-[10px]">
     <div class="flex flex-col items-center">
-      <div class="flex items-center flex-row lg:flex-col gap-4">
-        <img :src="data.img" alt="Avatar" class="w-14 lg:w-[112px] h-w-14 lg:h-[112px] rounded-full lg:mb-[22px]" />
+      <div class="flex items-center max-lg:flex-row flex-col max-sm:gap-2 gap-4">
+        <img :src="data.img" alt="Avatar" class="w-14 lg:w-[112px] h-14 lg:h-[112px] rounded-full lg:mb-[22px]" />
         <div class="">
           <h2 class="font-playfair font-bold text-[20px] leading-[120%] text-gray-light md:mb-[28px]">
             Hello, <span class="text-black">{{ data.name }}</span>
           </h2>
-          <div class="flex items-center gap-2 flex-wrap w-full text-center">
+          <div class="flex items-center gap-x-2 flex-wrap w-full text-center">
             <div v-for="(item, index) in data.status" :key="index" class="lg:hidden flex items-center gap-2">
-              <span class="font-styrene-medium font-medium text-[12px] leading-[20px] text-gray-light">{{ item.name
+              <span class="font-styrene-medium font-medium text-xs leading-[20px] text-gray-light">{{ item.name
                 }}</span>
-              <span class="text-[12px] font-semibold text-gray-light">{{
+              <span class="text-xs font-semibold text-gray-light">{{
                 item.points
                 }}</span>
               <!-- Dot after each item except the last -->
