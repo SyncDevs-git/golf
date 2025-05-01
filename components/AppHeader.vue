@@ -140,6 +140,10 @@ onUnmounted(() => {
             </NuxtLink>
           </li>
         </ul>
+        <NuxtLink to="item.to"
+        class="bg-brandGreen max-lg:py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs max-xl:text-[13px] text-sm max-xl:whitespace-pre-wrap whitespace-nowrap mt-4 text-center">
+        Sync with Arccos
+      </NuxtLink>
       </div>
     </transition>
   </nav>
