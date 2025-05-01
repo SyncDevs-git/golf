@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-flex items-center space-x-2">
+  <div class="inline-flex items-center space-x-2" ref="containerEl">
     <h2 class="font-playfair font-bold text-xl leading-5 text-black">{{ title }}</h2>
     <div v-if="tooltip" class="relative group cursor-pointer">
       <span>
@@ -24,19 +24,83 @@
         </svg>
       </span>
       
-      <div
-        class="absolute left-1/2 -top-[48px] -translate-x-1/2 w-max bg-black text-white text-xs px-5 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20"
+      <div ref="tooltipEl"
+      :class="[
+          'absolute bg-black text-white text-xs px-5 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20 w-max max-w-[200px] whitespace-nowrap',
+          tooltipClasses[tooltipPosition]
+        ]"
       >
         {{ tooltip }}
       </div>
-      <div class="w-3 h-3 -mr-2 rotate-45 bg-black absolute top-[-25px] left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+      <div
+      :class="[
+          'w-3 h-3 rotate-45 bg-black absolute opacity-0 group-hover:opacity-100 transition-opacity z-10',
+          arrowClasses[tooltipPosition]
+        ]"
+      ></div>
     </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { ref, onMounted, watch, nextTick } from 'vue';
+
+const props = defineProps({
   title: String,
   tooltip: String,
+});
+
+
+const tooltipEl = ref(null);
+const containerEl = ref(null);
+const tooltipPosition = ref('top');
+
+const tooltipClasses = {
+  top: 'bottom-full mb-2 left-1/2 -translate-x-1/2',
+  bottom: 'top-full mt-2 left-1/2 -translate-x-1/2',
+  left: 'right-full mr-2 top-1/2 -translate-y-1/2',
+  right: 'left-full ml-2 top-1/2 -translate-y-1/2',
+};
+
+const arrowClasses = {
+  top: 'bottom-[26px] left-1/2 -translate-x-1/2',
+  bottom: 'top-[26px] left-1/2 -translate-x-1/2',
+  left: 'right-[6px] top-1/2 -translate-y-1/2',
+  right: 'left-[6px] top-1/2 -translate-y-1/2',
+};
+
+const updateTooltipPosition = () => {
+  if (!tooltipEl.value || !containerEl.value) return;
+
+  const iconRect = containerEl.value.getBoundingClientRect();
+  const tooltipRect = tooltipEl.value.getBoundingClientRect();
+
+  const space = {
+    top: iconRect.top,
+    bottom: window.innerHeight - iconRect.bottom,
+    left: iconRect.left,
+    right: window.innerWidth - iconRect.right,
+  };
+
+  const fits = {
+    top: space.top > tooltipRect.height + 10,
+    bottom: space.bottom > tooltipRect.height + 10,
+    left: space.left > tooltipRect.width + 10,
+    right: space.right > tooltipRect.width + 10,
+  };
+
+  // Prioritized fallback order
+  if (fits.top) tooltipPosition.value = 'top';
+  else if (fits.bottom) tooltipPosition.value = 'bottom';
+  else if (fits.right) tooltipPosition.value = 'right';
+  else if (fits.left) tooltipPosition.value = 'left';
+  else tooltipPosition.value = 'top'; // fallback
+};
+
+onMounted(() => {
+  nextTick(() => {
+    updateTooltipPosition();
+    window.addEventListener('resize', updateTooltipPosition);
+  });
 });
 </script>

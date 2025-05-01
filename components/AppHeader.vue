@@ -99,20 +99,25 @@ onUnmounted(() => {
         Sync with Arccos
       </NuxtLink>
       <span class="max-lg:hidden inline-block w-[1px] h-10 bg-white/20"></span>
-      <div class="flex items-center max-xl:space-x-[5px] space-x-[11px]">
-        <img src="/assets/images/profile.png" alt="User Avatar"
-          class="max-lg:w-5 max-xl:w-10 w-12 max-lg:h-5 max-xl:h-10 h-12 rounded-full" />
-        <div class="text-sm">
-          <p class="font-playfair font-bold max-lg:text-xs max-xl:text-sm text-base text-gray-light flex items-center">Hello, <span
-              class="text-white">Smith</span>
-            <Icon name="material-symbols:keyboard-arrow-down" class="" />
-          </p>
-          <p
-            class="max-2xl:hidden inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
-            smithwill@gmail.com</p>
+      <div class="flex items-center max-xl:space-x-[25px] space-x-[11px]">
+        <div class="flex items-center max-xl:space-x-[5px] space-x-[11px]">
+          <img src="/assets/images/profile.png" alt="User Avatar"
+            class="max-lg:w-5 max-xl:w-10 w-12 max-lg:h-5 max-xl:h-10 h-12 rounded-full" />
+          <div class="text-sm">
+            <p class="font-playfair font-bold max-lg:text-xs max-xl:text-sm text-base text-gray-light flex items-center">Hello, <span
+                class="text-white">Smith</span>
+              <Icon name="material-symbols:keyboard-arrow-down" class="" />
+            </p>
+            <p
+              class="max-2xl:hidden inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
+              smithwill@gmail.com</p>
+          </div>
         </div>
         <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="max-lg:block hidden">
-          <Icon name="flowbite:bars-outline" class="text-white" />
+<svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.375 4.375H23.625C24.1223 4.375 24.5992 4.17746 24.9508 3.82583C25.3025 3.47419 25.5 2.99728 25.5 2.5C25.5 2.00272 25.3025 1.52581 24.9508 1.17417C24.5992 0.822544 24.1223 0.625 23.625 0.625H2.375C1.87772 0.625 1.40081 0.822544 1.04917 1.17417C0.697544 1.52581 0.5 2.00272 0.5 2.5C0.5 2.99728 0.697544 3.47419 1.04917 3.82583C1.40081 4.17746 1.87772 4.375 2.375 4.375ZM23.625 8.125H2.375C1.87772 8.125 1.40081 8.32254 1.04917 8.67417C0.697544 9.02581 0.5 9.50272 0.5 10C0.5 10.4973 0.697544 10.9742 1.04917 11.3258C1.40081 11.6775 1.87772 11.875 2.375 11.875H23.625C24.1223 11.875 24.5992 11.6775 24.9508 11.3258C25.3025 10.9742 25.5 10.4973 25.5 10C25.5 9.50272 25.3025 9.02581 24.9508 8.67417C24.5992 8.32254 24.1223 8.125 23.625 8.125ZM23.625 15.625H2.375C1.87772 15.625 1.40081 15.8225 1.04917 16.1742C0.697544 16.5258 0.5 17.0027 0.5 17.5C0.5 17.9973 0.697544 18.4742 1.04917 18.8258C1.40081 19.1775 1.87772 19.375 2.375 19.375H23.625C24.1223 19.375 24.5992 19.1775 24.9508 18.8258C25.3025 18.4742 25.5 17.9973 25.5 17.5C25.5 17.0027 25.3025 16.5258 24.9508 16.1742C24.5992 15.8225 24.1223 15.625 23.625 15.625Z" fill="white"/>
+</svg>
+
         </button>
       </div>
     </div>

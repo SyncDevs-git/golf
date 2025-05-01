@@ -338,7 +338,7 @@ const videoSrc = [
             <template #footer>
               <div class="px-[25px] pb-[30px]">
                 <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
-                  <div class="max-w-[588px] mx-auto">
+                  <div class="max-w-[588px] mx-auto max-lg:px-4">
                     <span
                       class="bg-white inline-flex w-[47px] h-[47px] rounded-full items-center justify-center mb-[14px]">
                       <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -388,7 +388,7 @@ const videoSrc = [
           <ContentCard title="How to fix your golf swing via instruction lessons?"
             tooltip="SG is a way to measure performance">
             <template #body>
-              <div class="grid grid-cols-12 gap-4 pt-[25px] pb-[29px]">
+              <div class="grid grid-cols-12 gap-4 pt-[25px] pb-[29px] overflow-x-hidden">
                 <div class="col-span-12">
                   <div class="px-[25px]">
                     <h4 class="font-playfair font-extrabold text-[21px] leading-[153%] text-black mb-[10px]">How to hit
@@ -496,7 +496,7 @@ const videoSrc = [
             </template>
             <template #footer>
               <div class="border-t px-[25px] py-5">
-                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
+                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center max-lg:px-4">
                   <div class="">
                     <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black ">
                       You are
@@ -525,7 +525,7 @@ const videoSrc = [
             </template>
             <template #footer>
               <div class="border-t px-[25px] py-5">
-                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
+                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center max-lg:px-4">
                   <div class="">
                     <p class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black">
                       You are
@@ -554,10 +554,9 @@ const videoSrc = [
             </template>
             <template #footer>
               <div class="border-t px-[25px] py-5">
-                <div class="bg-sonfSliver py-[23px] rounded-[10px] text-center">
-                  <div class="max-w-[588px] mx-auto">
+                <div class="bg-sonfSliver py-[23px] max-lg:px-4 rounded-[10px] text-center max-w-max mx-auto">
                     <ul
-                      class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center justify-center gap-[21px] flex-wrap lg:flex-nowrap">
+                      class="font-styrene-regular font-normal text-[15px] leading-[175%] text-black flex items-center justify-center gap-[21px] max-lg:flex-wrap">
                       <li class="">Meriwether National GC - West</li>
                       <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
                       <li
@@ -572,7 +571,6 @@ const videoSrc = [
                         class="">
                         @ 15 HCP</li>
                     </ul>
-                  </div>
                 </div>
               </div>
             </template>

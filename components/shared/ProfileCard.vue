@@ -31,10 +31,10 @@
         </div>
       </div>
       <div class="border-[2px] border-[rgba(0,0,0,0.08)] rounded-xl w-full">
-        <div class="pt-[27px] pb-[23px]">
+        <div class="pt-[27px] pb-[23px] ">
           <div class="top-section flex items-center justify-center gap-[13px]">
             <p
-              class="bg-black rounded-xl font-styrene-bold font-bold text-[26px] leading-[100%] text-white px-[12px] py-[15px]">
+              class="bg-black rounded-xl font-styrene-bold font-bold max-xl:text-base text-[26px] leading-[100%] text-white px-[12px] py-[15px]">
               {{ data.mainValue }}</p>
             <div class="delta-section">
               <span
@@ -49,7 +49,7 @@
                   </svg>
                 </span>
               </span>
-              <span class="font-styrene-medium font-medium text-base leading-[20px] text-gray-light">SG/Round</span>
+              <span class="font-styrene-medium font-medium max-xl:text-sm text-base leading-[20px] text-gray-light">SG/Round</span>
             </div>
           </div>
           <p class="font-playfair font-extrabold text-base leading-[155%] text-black text-center mt-4">
