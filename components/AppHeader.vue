@@ -133,7 +133,7 @@ onUnmounted(() => {
         <ul class="flex flex-col gap-4">
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink :to="item.to" @click="isMobileMenuOpen = false"
-              class="flex items-center gap-2 font-styrene-medium text-sm"
+              class="flex items-center gap-2 font-styrene-medium text-base"
               :class="isActive(item.to) ? 'text-primary' : 'text-gray-700'">
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
               <span>{{ item.title }}</span>
