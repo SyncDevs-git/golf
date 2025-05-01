@@ -27,7 +27,7 @@
   }
 }
 nav svg{
-  @apply max-md:w-[10px] max-lg:w-[14px] w-[18px];
+  @apply max-lg:w-[10px] max-xl:w-[14px] w-[18px];
 }
 
 nav .nav-active svg path{

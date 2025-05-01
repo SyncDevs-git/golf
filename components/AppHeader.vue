@@ -74,7 +74,7 @@ onUnmounted(() => {
 </script>
 <template>
   <nav
-    class="bg-deepForest flex items-center justify-between max-lg:px-3 px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
+    class="bg-deepForest flex items-center justify-between max-lg:py-5 max-lg:px-3 px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
     <div class="flex items-center max-lg:gap-x-3 gap-x-4">
       <div class="logo">
         <img src="/assets/images/logo.png" alt="" class="w-full h-full min-w-[60px]"/>
@@ -83,7 +83,7 @@ onUnmounted(() => {
         <ul class="max-lg:hidden flex items-center">
           <li v-for="item in navItems" :key="item.to" class="group">
             <NuxtLink :to="item.to"
-              class="flex items-center max-lg:gap-x-[2px] gap-x-[7px] font-styrene-medium max-xl:text-xs max-2xl:text-[13px] text-sm max-lg:py-5 py-[33px] max-lg:px-2 px-4 group-hover:bg-teritory group-hover:text-primary transition whitespace-nowrap"
+              class="flex items-center max-lg:gap-x-[2px] gap-x-[7px] font-styrene-medium max-xl:text-xs max-2xl:text-[13px] text-sm max-lg:py-5 py-[33px] max-lg:px-1 max-xl:px-2 px-4 group-hover:bg-teritory group-hover:text-primary transition whitespace-nowrap"
               :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'">
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
               <span>{{ item.title }}</span>
@@ -93,17 +93,17 @@ onUnmounted(() => {
       </nav>
     </div>
 
-    <div class="flex items-center max-xl:space-x-2 max-2xl:space-x-4 space-x-5">
+    <div class="flex items-center max-lg:space-x-2 max-xl:space-x-4 space-x-5">
       <NuxtLink to="item.to"
-        class="max-lg:hidden inline-block bg-brandGreen max-xl:py-3 max-xl:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-xl:text-xs max-2xl:text-[13px] text-sm whitespace-nowrap">
+        class="max-lg:hidden inline-block bg-brandGreen max-lg:py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs max-xl:text-[13px] text-sm max-xl:whitespace-pre-wrap whitespace-nowrap">
         Sync with Arccos
       </NuxtLink>
       <span class="max-lg:hidden inline-block w-[1px] h-10 bg-white/20"></span>
       <div class="flex items-center max-xl:space-x-[5px] space-x-[11px]">
         <img src="/assets/images/profile.png" alt="User Avatar"
-          class="max-md:w-5 max-lg:w-10 w-12 max-md:h-5 max-lg:h-10 h-12 rounded-full" />
+          class="max-lg:w-5 max-xl:w-10 w-12 max-lg:h-5 max-xl:h-10 h-12 rounded-full" />
         <div class="text-sm">
-          <p class="font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light flex items-center">Hello, <span
+          <p class="font-playfair font-bold max-lg:text-xs max-xl:text-sm text-base text-gray-light flex items-center">Hello, <span
               class="text-white">Smith</span>
             <Icon name="material-symbols:keyboard-arrow-down" class="" />
           </p>
@@ -111,7 +111,7 @@ onUnmounted(() => {
             class="max-2xl:hidden inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
             smithwill@gmail.com</p>
         </div>
-        <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="block lg:hidden">
+        <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="max-lg:block hidden">
           <Icon name="flowbite:bars-outline" class="text-white" />
         </button>
       </div>
