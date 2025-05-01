@@ -49,7 +49,7 @@
                   </svg>
                 </span>
               </span>
-              <span class="font-styrene-medium font-medium text-[15px] leading-[20px] text-gray-light">SG/Round</span>
+              <span class="font-styrene-medium font-medium text-base leading-[20px] text-gray-light">SG/Round</span>
             </div>
           </div>
           <p class="font-playfair font-extrabold text-base leading-[155%] text-black text-center mt-4">

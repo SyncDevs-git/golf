@@ -40,6 +40,7 @@ module.exports = {
         DEFAULT: '16px',
         sm: '16px',
         lg: '16px',
+        xl: '16px',
         '2xl': '16px',
       },
       screens: {

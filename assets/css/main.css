@@ -27,7 +27,7 @@
   }
 }
 nav svg{
-  @apply w-[10px] 2xl:w-[18px];
+  @apply w-[10px] xl:w-[18px];
 }
 
 nav .nav-active svg path{
