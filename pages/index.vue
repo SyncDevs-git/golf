@@ -311,10 +311,10 @@ const videoSrc = [
 <template>
   <div class="container">
     <div class="grid grid-cols-12 gap-[30px]">
-      <div class="col-span-12 xl:col-span-3">
+      <div class="col-span-12 lg:col-span-3">
         <ProfileCard :data="profileData" />
       </div>
-      <div class="col-span-12 xl:col-span-9">
+      <div class="col-span-12 lg:col-span-9">
         <!-- Header: Tabs -->
         <div class="flex gap-2 bg-white rounded-[15px] p-[15px]">
           <ContainerCard :tabs="tabs" v-model="activeTab" />
