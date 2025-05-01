@@ -104,7 +104,7 @@ onUnmounted(() => {
           <img src="/assets/images/profile.png" alt="User Avatar"
             class="max-lg:w-5 max-xl:w-10 w-12 max-lg:h-5 max-xl:h-10 h-12 rounded-full" />
           <div class="text-sm">
-            <p class="font-playfair font-bold max-lg:text-xs max-xl:text-sm text-base text-gray-light flex items-center">Hello, <span
+            <p class="font-playfair font-bold max-sm:text-sm max-lg:text-xs max-xl:text-sm text-base text-gray-light flex items-center">Hello, <span
                 class="text-white">Smith</span>
               <Icon name="material-symbols:keyboard-arrow-down" class="" />
             </p>
