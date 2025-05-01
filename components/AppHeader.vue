@@ -74,16 +74,16 @@ onUnmounted(() => {
 </script>
 <template>
   <nav
-    class="bg-deepForest flex items-center justify-between px-3 xl:px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
-    <div class="flex items-center gap-x-3 lg:gap-x-4">
+    class="bg-deepForest flex items-center justify-between max-lg:px-3 px-[25px] border-t-[8px] border-teritory mb-[30px] sticky top-0 z-20">
+    <div class="flex items-center max-lg:gap-x-3 gap-x-4">
       <div class="logo">
         <img src="/assets/images/logo.png" alt="" class="w-full h-full min-w-[60px]"/>
       </div>
       <nav>
-        <ul class="hidden lg:flex items-center">
+        <ul class="max-lg:hidden flex items-center">
           <li v-for="item in navItems" :key="item.to" class="group">
             <NuxtLink :to="item.to"
-              class="flex items-center gap-x-[2px] xl:gap-x-[7px] font-styrene-medium text-xs 2xl:text-sm  py-5 lg:py-[33px] px-1 lg:px-2 xl::px-4 group-hover:bg-teritory group-hover:text-primary transition whitespace-nowrap"
+              class="flex items-center max-lg:gap-x-[2px] gap-x-[7px] font-styrene-medium max-lg:text-xs text-sm max-lg:py-5 py-[33px] max-lg:px-2 px-4 group-hover:bg-teritory group-hover:text-primary transition whitespace-nowrap"
               :class="isActive(item.to) ? 'text-primary bg-teritory' : 'text-secondary'">
               <span v-html="item.icon" :class="isActive(item.to) ? 'nav-active' : 'text-gray-500'"></span>
               <span>{{ item.title }}</span>
@@ -93,22 +93,22 @@ onUnmounted(() => {
       </nav>
     </div>
 
-    <div class="flex items-center space-x-2 xl::space-x-5">
+    <div class="flex items-center max-lg:space-x-2 space-x-5">
       <NuxtLink to="item.to"
-        class="hidden lg:inline-block bg-brandGreen py-3 px-2 xl::p-[13px] rounded-[10px] text-white font-styrene-medium text-xs 2xl:text-sm whitespace-nowrap">
+        class="max-lg:hidden inline-block bg-brandGreen py-3 max-lg:px-2 p-[13px] rounded-[10px] text-white font-styrene-medium max-lg:text-xs text-sm whitespace-nowrap">
         Sync with Arccos
       </NuxtLink>
-      <span class="hidden lg:inline-block w-[1px] h-10 bg-white/20"></span>
-      <div class="flex items-center space-x-1 lg:space-x-[5px] xl:space-x-[11px]">
+      <span class="max-lg:hidden inline-block w-[1px] h-10 bg-white/20"></span>
+      <div class="flex items-center max-xl:space-x-[5px] space-x-[11px]">
         <img src="/assets/images/profile.png" alt="User Avatar"
-          class="w-5 lg:w-10 xl::w-12 h-5 lg:h-10 xl::h-12 rounded-full" />
+          class="max-md:w-5 max-lg:w-10 w-12 max-md:h-5 max-lg:h-10 h-12 rounded-full" />
         <div class="text-sm">
-          <p class="font-playfair font-bold text-xs lg:text-sm xl::text-base text-gray-light">Hello, <span
+          <p class="font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light flex items-center">Hello, <span
               class="text-white">Smith</span>
             <Icon name="material-symbols:keyboard-arrow-down" class="" />
           </p>
           <p
-            class="hidden lg:inline-block font-playfair font-bold text-xs lg:text-sm xl::text-base text-gray-light">
+            class="max-2xl:hidden inline-block font-playfair font-bold max-md:text-xs max-lg:text-sm text-base text-gray-light">
             smithwill@gmail.com</p>
         </div>
         <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="block lg:hidden">
