@@ -3,6 +3,9 @@ import LineGraph from "@/components/shared/LineGraph.vue";
 import PieGraph from "@/components/shared/PieGraph.vue";
 import redFlag from '~/assets/images/red-flag.svg'
 import profileImg from '~/assets/images/profile-2.png'
+import sliderImg1 from '~/assets/images/item1.png'
+import sliderImg2 from '~/assets/images/item2.png'
+import sliderImg3 from '~/assets/images/item3.png'
 import { ref, onMounted, type ComponentPublicInstance } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -299,11 +302,11 @@ const handleSlideChange = () => {
 }
 
 const videoSrc = [
-  { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg", },
-  { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg", },
-  { id: 'media2', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg", },
-  { id: 'media3', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg", },
-  { id: 'media5', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4', "thumb": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg", },
+  { id: 'media1', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', "thumb": sliderImg1, },
+  { id: 'media4', type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', "thumb": sliderImg2, },
+  { id: 'media2', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', "thumb": sliderImg3, },
+  { id: 'media3', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', "thumb": sliderImg1, },
+  { id: 'media5', type: 'video', src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4', "thumb": sliderImg2, },
 ]
 
 </script>
